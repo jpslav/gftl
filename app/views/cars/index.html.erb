@@ -1,0 +1,44 @@
+<div id="pageHeading">Cars</div>
+
+<% if @cars.nil? || @cars.empty? %>
+
+There are no cars in the system yet.  <%= link_to 'Add one now!', new_car_path %>
+
+<% else %>
+
+<table id="list">
+  <tr>
+    <th width="10%">Year</th>
+	<th width="10%">Number</th>
+    <th width="30%">Icon</th>
+	<th width="40%">Normal Drivers</th>
+    <th colspan="2"></th>
+  </tr>
+
+<% rowtype = "evenrow"%>
+<% @cars.each do |car| %>
+  <tr class="<%= rowtype %>">
+	<td><%=h car.year %></td>
+    <td><%=h car.number %></td>
+    <td>
+	<% if !car.icon_url.nil? && !car.icon_url.empty? %>
+		<%= image_tag(car.icon_url, :border => '0')  %>
+	<% else %>
+		--
+	<% end %></td>
+	<td><%=h car.normal_drivers || "--" %>
+    <td><%= link_to show_icon, car %></td>
+    <td><%= link_to edit_icon, edit_car_path(car) %></td>
+    <!-- <td><%= link_to trash_icon, car, 
+			:confirm => 'Are you sure you want to delete car ' + car.number + "?", 
+			:method => :delete %></td> -->
+  </tr>
+  <% rowtype = "oddrow" == rowtype ? "evenrow" : "oddrow" %>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Add a new car', new_car_path %>
+
+<% end %>

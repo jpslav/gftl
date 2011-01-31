@@ -1,0 +1,32 @@
+<h1>Editing league</h1>
+
+<%= form_for(@league) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :year %><br />
+    <%= f.text_field :year %>
+  </p>
+  <p>
+    <%= f.label :max_owners %><br />
+    <%= f.text_field :max_owners %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.text_field :password %>
+  </p>
+  <p>
+    <%= f.label "Registration is open:" %><br />
+    <%= f.check_box :is_registration_open %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @league %> |
+<%= link_to 'Back', leagues_path %>

@@ -1,0 +1,25 @@
+
+<table>
+	
+<tr>
+	<td>Name:</td>
+	<td><%=h @race.name %></td>
+</tr>
+<tr>
+	<td>Track:</td>
+	<td><%=h @race.track.name %></td>
+</tr>
+<tr>
+	<td>Start Time:</td>
+	<td><%=h @race.racetime.strftime('%b %d %Y, %I:%M %p') %> ET</td>
+</tr>
+<tr>
+	<td>Notes:</td>
+	<td><%=h @race.notes %>
+  </p>
+</tr>
+
+</table>
+<p>
+<%= link_to 'Edit', edit_race_path(@race) %> |
+<%= link_to 'Back', races_path %>

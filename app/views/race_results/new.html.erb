@@ -1,0 +1,23 @@
+<h1>New race_result</h1>
+
+<%= form_for(@race_result) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :car_id %><br />
+    <%= f.text_field :car_id %>
+  </p>
+  <p>
+    <%= f.label :race_id %><br />
+    <%= f.text_field :race_id %>
+  </p>
+  <p>
+    <%= f.label :points_delta %><br />
+    <%= f.text_field :points_delta %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', race_results_path %>

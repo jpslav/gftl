@@ -1,0 +1,23 @@
+<p>
+  <b>Year:</b>
+  <%=h @car.year %>
+</p>
+<p>
+  <b>Number:</b>
+  <%=h @car.number %>
+</p>
+
+<p>
+  <b>Icon URL:</b>
+  <%=h @car.icon_url %>
+</p>
+
+<p>
+  <b>Normal Drivers:</b>
+  <%=h @car.normal_drivers %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_car_path(@car) %> |
+<%= link_to 'Back', cars_path %>

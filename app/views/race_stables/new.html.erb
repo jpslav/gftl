@@ -1,0 +1,43 @@
+<div id="pageHeading">New Race Stable</div>
+
+<% @memberships = LeagueMembership.all.select{|m| m.league.year == Time.now.year} %>
+<% @races = Race.find_all_by_year(Time.now.year).sort{|a,b| a.racetime <=> b.racetime}%>
+<% @cars = Car.find_all_by_year(Time.now.year)%>
+
+<%= form_for(@race_stable) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    League Membership<br />
+    <%= f.collection_select(:league_membership_id, @memberships, :id, :toString)%>
+  </p>
+  <p>
+    Race<br />
+    <%= f.collection_select(:race_id, @races, :id, :name_with_date)%>
+  </p>
+  <p>
+    Car #1<br />
+    <%= f.collection_select(:car1_id, @cars, :id, :numberAndDriver)%>    
+  </p>
+  <p>
+    Car #2<br />
+    <%= f.collection_select(:car2_id, @cars, :id, :numberAndDriver)%>    
+  </p>
+  <p>
+    Car #3<br />
+	<%= f.collection_select(:car3_id, @cars, :id, :numberAndDriver)%>    
+  </p>
+  <p>
+    Car #4<br />
+    <%= f.collection_select(:car4_id, @cars, :id, :numberAndDriver)%>    
+  </p>
+  <p>
+    Car #5<br />
+    <%= f.collection_select(:car5_id, @cars, :id, :numberAndDriver)%>    
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', race_stables_path %>

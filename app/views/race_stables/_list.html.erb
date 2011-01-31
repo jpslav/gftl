@@ -1,0 +1,42 @@
+<% if !@race_stables.nil? && !@race_stables.empty? %>
+
+<% groups = @race_stables.group_by {|s| s.race}.sort_by{|g| g.first.racetime}.reverse!%>
+
+<% multi_owner = @race_stables.collect{|s| s.league_membership.owner}.uniq.size > 1%>
+
+<table id="list">
+  <tr>
+    <th width="35%">Race</th>
+    <th width="35%">Owner</th>
+    <th width="20%">Cars</th>
+    <th width="10%">Points</th>
+    <th colspan="2"></th>
+  </tr>
+
+<% groups.each do |race, stables| %>
+  <tr class="oddrow">
+    <td colspan="7"><%=h race.name_with_date %></td>
+  </tr>
+  <% stables.each do |stable| %>
+  <tr>
+	<td>&nbsp;</td>
+	<td><%=h stable.league_membership.owner.name %></td>
+	<td><%=h stable.orderedCarNumbers.join(", ") %></td>
+	<td><%=h stable.points %></td>
+	<% if current_user.is_administrator %>
+    <td><%= link_to edit_icon, edit_race_stable_path(stable) %></td>
+    <td><%= link_to trash_icon, stable, 
+			:confirm => 'Are you sure you want to delete the ' + stable.race.name + 'stable for ' + stable.league_membership.toString + "?", 
+			:method => :delete %></td>
+	<% else %>
+		<td></td><td></td>
+	<% end %>
+  </tr>
+  <% end %>
+    
+  </tr>
+  
+<% end %>
+</table>
+
+<% end %>

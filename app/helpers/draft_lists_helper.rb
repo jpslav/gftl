@@ -1,0 +1,2 @@
+module DraftListsHelper
+end

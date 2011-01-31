@@ -1,0 +1,462 @@
+#body {
+	width: 800px;
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	font-color: #000000;
+}
+
+#banner {
+	/* background: #7da5f4; */
+	background: #012684;
+    padding-top: 4px;
+    padding-bottom: 1px;
+    border-bottom: 2px solid;
+    color: #4d84f4;
+    text-align: center;
+	height: 40px;
+}
+
+#banner img {
+	float: left;
+}
+
+#pageHeading {
+    font-size: 18px;
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+
+#sectionHeading {
+   font-size: 16px;
+   font-weight: bold;
+   font-style: italic;
+   margin-top: 16px;
+   margin-bottom: 6px;
+   border-bottom: 1px solid;
+   border-color: #000000;
+}
+
+#sectionHeading_no_under {
+   font-size: 16px;
+   font-weight: bold;
+   font-style: italic;
+   margin-top: 16px;
+   margin-bottom: 6px;
+}
+
+#subSectionHeading {
+   font-size: 14px;
+   font-weight: bold;
+   padding-top: 8px;
+   padding-bottom: 4px;
+}
+
+/********************* ERROR HANDLING ******************/
+
+#flashEmpty {
+    background: #ffffff;
+    padding-top: 7px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid white;
+    padding-left: 10px;
+	padding-right: 10px;
+	color: #ffffff;
+}
+#flashNotice {
+    background: ;
+    padding-top: 7px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+	padding-right: 10px;
+	text-align: right;
+	color: #22aa44;
+}
+
+#flashError {
+    background: #ff2222;
+    padding-top: 7px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid black;
+    padding-left: 10px;
+	padding-right: 10px;
+	color: #ffffff;
+}
+
+#errorExplanation { /* used by error_messages_for */
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  float: right;
+}
+
+#errorExplanation h2 {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/****************************************************/
+
+#mainContent {
+    padding-left: 10px;
+    padding-right: 10px;   
+}
+
+#mainContent a {
+    color: #0000cc;
+}
+
+#mainContent a:hover {
+	color: #cc0000;
+}
+
+#footer {
+	background: #ffffff;
+    padding-top: 4px;
+    padding-bottom: 1px;
+    border-top: 2px solid;
+	border-color: #4d84f4;
+    text-align: center;
+	font-family: sans-serif;
+	font-size: 9px;
+	font-weight: normal;
+	font-color: #000000;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+#mainCategory {
+	background: #ffffff;
+	padding-top: 4px;
+	padding-bottom: 2px; 
+	border-bottom: 1px solid;
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	clear: both;
+	color: #000000;
+}
+
+#banner, #mainCategory {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#mainCategory a {
+	text-decoration: none;
+    font: sans-serif;
+	color: #000000;
+	
+}
+
+#mainCategory a:hover {
+	color: #4d84f4;
+}
+
+.floatRight {
+	float: right;
+}
+
+.floatCenter {
+	float: center;
+}
+
+/*********************************************/
+
+table#status {
+/*	border: solid #000 3px;*/
+	width: 100%;
+	font-family: sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	font-color: #000000;
+	margin-top:20px;
+	text-align: center;
+	padding: 0;
+	border-spacing: 2px;
+	border-width: 0px 0px 0px 0px;
+	border-style: outset outset outset outset;
+	border-color: gray gray gray gray;
+	border-collapse: collapse;
+}
+
+table#status td.data {
+	border-spacing: 2px;
+	border-width: 1px 1px 1px 1px;
+	border-style: outset outset outset outset;
+	border-color: gray gray gray gray;
+	border-collapse: collapse;
+}
+
+table#status td.date {
+	width: 20px;
+}
+
+table#status td.tracked {
+	width: 40px;
+}
+
+#loginStatus {
+	font-family: sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	font-variant: italic;
+	color: #ffffff;
+	margin-top:20px;
+	text-align: right;
+}
+
+#loginStatus a {
+	font-family: sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #ffffff;
+	margin-top:20px;
+	text-align: center;
+}
+
+#errorDetails {
+  border: 2px solid red;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+  font: bold 10px sans-serif;
+  color: red;
+}
+
+#loginScreen {
+	font-family: sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #000;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	width: 300px;
+}
+
+#loginScreen legend {
+	font-size: 12px;
+	border: 1px solid black;
+	padding: 10px;
+	color: #fff;
+	background-color: #7da5f4;
+}
+
+table#status td.action {
+	border-spacing: 2px;
+	border-width: 0px 0px 0px 0px;
+	border-style: outset outset outset outset;
+	border-color: gray gray gray gray;
+	border-collapse: collapse;
+	width: 20px;
+}
+
+
+table#status td.evenrow {
+	background: #ffffff;
+}
+
+table#status td.oddrow {
+	background: #dddddd;
+}
+
+.toprow {
+	font-weight: bold;
+	text-align: center;
+	border-bottom: 1px;
+}
+
+#homeLeftColumn {
+	float:left;
+	width:40%;
+	background:#fff;
+	
+	padding-left:5%;
+	padding-right:4%;
+
+	
+	padding-bottom:20px;
+
+}
+
+#homeRightColumn {
+	float:right;
+	width:40%;
+padding-right:5%;
+padding-left:5%;
+
+}
+
+#homeHeading {
+	/*width: 100%;*/
+	font-size: 16px;
+	border-bottom: 1px #333 solid;
+	border-right: 1px #333 solid;
+	/*clear: both;*/
+}
+
+#draftListEditLeft {
+   float:left;
+   width:40%;
+   padding-right:5%;
+   padding-left:0%;
+}
+
+#draftListEditRight {
+   float:right;
+   width:50%;
+   padding-left:5%;
+   padding-right:0%;
+}
+
+/************ GENERIC LIST TABLE *********************/
+
+table#list {
+/*	border: solid #000 3px;*/
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	font-color: #000000;
+	margin-top:5px;
+	text-align: left;
+	padding: 2px;
+	border-spacing: 2px;
+	border-width: 0px 0px 0px 0px;
+	border-style: outset outset outset outset;
+	border-color: gray gray gray gray;
+	border-collapse: collapse;
+}
+
+table#list tr.evenrow {
+   background: #ffffff;
+}
+
+table#list tr.oddrow {
+   background: #dddddd;
+}
+
+table#list tr.toprow {
+   font-weight: bold;
+	text-align: left;
+	border-bottom: 1px solid black;
+}
+
+table#list th {
+   font-weight: bold;
+	text-align: left;
+	border-bottom: 1px solid black;
+}
+
+/* The td's below should be deprecated */
+
+table#list td.evenrow {
+	background: #ffffff;
+}
+
+table#list td.oddrow {
+	background: #dddddd;
+}
+
+table#list td.toprow {
+	font-weight: bold;
+	text-align: left;
+	border-bottom: 1px solid black;
+}
+
+/************* GENERIC FORM TABLE *********************/
+
+table#form {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	font-color: #000000;
+	margin-top:5px;
+	text-align: left;
+	padding: 2px;
+	border-spacing: 2px;
+	border-width: 0px 0px 0px 0px;
+	border-style: outset outset outset outset;
+	border-color: gray gray gray gray;
+	border-collapse: collapse;
+}
+
+/************* FORM STYLES *********************/
+
+input[type=text], input[type=password], select {
+    border-top: 1px solid #aaa;
+    border-left: 1px solid #aaa;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background-color: #fcfcfc;
+}
+input[type=submit], input[type=button] {
+    border-bottom: 1px solid #666;
+    border-right: 1px solid #666;
+    border-top: 1px solid #aaa;
+    border-left: 1px solid #aaa;
+    background-color: #ccc;
+    /*margin-top: 7px;
+    margin-bottom: 7px;*/
+}
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ffc;
+}
+
+input.big {
+    font-size: 1.5em;
+    padding: 0.1em;
+}
+.small {
+    font-size: 80%;
+}
+
+/****************************************************/
+
+#wideFieldset {
+	/*font-family: sans-serif;
+	font-size: 10px;
+	font-weight: normal;*/
+	color: #000;
+	margin-top: 5px;
+	margin-bottom: 13px;
+	
+}
+
+#wideFieldset legend {
+	font-size: 14px;
+	border: 1px solid black;
+	padding: 5px 20px 3px 20px;
+	color: #fff;
+	background-color: #012684;
+}
+
+.editStepLeft {
+    width: 200px;
+}
+
+#stepLeft { 
+    width: 300px;
+    border-right: 1px solid #ccc;
+    clear: left;
+    padding-right: 10px;
+    float: left;
+}
+
+#stepRight {
+    float: right;
+}
+
+#stepLeftTop {
+clear: both;
+}
+
+#stepList { width: 300px; float: left; }
+
+#addStep { clear:both; }
+
+ol#preferences  {
+   cursor: -moz-grab;
+}

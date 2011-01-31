@@ -1,0 +1,27 @@
+<h1>New car</h1>
+
+<%= form_for(@car) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :year %><br />
+    <%= f.text_field :year %>
+  </p>
+  <p>
+    <%= f.label :number %><br />
+    <%= f.text_field :number %>
+  </p>
+  <p>
+    <%= f.label :icon_url %><br />
+    <%= f.text_field :icon_url %>
+  </p>
+  <p>
+    <%= f.label :normal_drivers %><br />
+    <%= f.text_field :normal_drivers %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', cars_path %>

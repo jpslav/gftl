@@ -1,0 +1,75 @@
+<% league = @active_membership.league %>
+<% members = league.league_memberships %>
+
+<div id="pageHeading">League Details: <%= league.name %></div>
+
+	
+<div id="sectionHeading_no_under">Standings</div>
+
+<table id="list" width="100%">
+  <tr>
+    <th width="40%">Owner</th>
+	<th width="20%">1st Half Points</th>
+    <th width="20%">2nd Half Points</th>
+	<th width="20%">Chase Points</th>
+  </tr>
+  <% rowtype = "evenrow"%>
+  <% members.each do |member| %>
+  <tr class="<%= rowtype %>">
+    <td><%= member.owner.name %></td>
+    <td><%= member.firstHalfPoints %></td>
+	<td><%= member.secondHalfPoints %></td>
+	<td><%= member.chasePoints %></td>
+  </tr>
+  <% rowtype = "oddrow" == rowtype ? "evenrow" : "oddrow" %>
+  <% end %>
+</table>
+
+<div id="sectionHeading_no_under">Owned Stables</div>
+
+<table id="list" width="100%">
+  <tr>
+    <th width="55%">Owner</th>
+	<!-- <th width="10%">#</th> -->
+    <th width="15%">Car</th>
+	<th width="30%">Typical Driver(s)</th>
+  </tr>
+  <% rowtype = "evenrow"%>
+  <% members.each do |member| %>
+  <% owned_stable = member.owned_stable%>
+  <% first_owned_car = owned_stable.nil? ? nil : owned_stable.car1 %>
+  <% second_owned_car = owned_stable.nil? ? nil : owned_stable.car2 %>
+  <tr class="<%= rowtype %>">
+    <td><%= member.owner.name %></td>
+ <!--   <td>1)</td> -->
+    <td><%= first_owned_car.nil? ? "---" : first_owned_car.number%></td>
+	<td><%= first_owned_car.nil? ? "---" : first_owned_car.normal_drivers%></td>
+  </tr>
+ <!-- <tr class="<%= rowtype %>">
+	<td>&nbsp;</td>
+    <td>2)</td>
+    <td><%= second_owned_car.nil? ? "---" : second_owned_car.number%></td>
+	<td><%= second_owned_car.nil? ? "---" : second_owned_car.normal_drivers%></td>
+  </tr> -->
+  <% rowtype = "oddrow" == rowtype ? "evenrow" : "oddrow" %>
+  <% end %>
+</table>
+
+<div id="sectionHeading_no_under">Race Stables</div>
+
+<br clear="all"/>
+
+<% races = Race.racesUpThroughNextOne %>
+<% @race_stables = RaceStable.all %>
+
+<% if !@show_data_for_all_members %>
+
+<%= render(:partial => 'race_stables/list',:object => @active_membership.race_stables.to_a)%>
+
+<% else %>
+
+<%= render(:partial => 'race_stables/list', :object => @active_membership.league.race_stables)%>
+
+<% end %>
+
+<br />

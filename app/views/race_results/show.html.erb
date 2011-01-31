@@ -1,0 +1,18 @@
+<p>
+  <b>Car:</b>
+  <%=h @race_result.car_id %>
+</p>
+
+<p>
+  <b>Race:</b>
+  <%=h @race_result.race_id %>
+</p>
+
+<p>
+  <b>Points delta:</b>
+  <%=h @race_result.points_delta %>
+</p>
+
+
+<%= link_to 'Edit', edit_race_result_path(@race_result) %> |
+<%= link_to 'Back', race_results_path %>

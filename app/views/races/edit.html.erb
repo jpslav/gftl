@@ -1,0 +1,28 @@
+<h1>Editing race</h1>
+
+<%= form_for(@race) do |f| %>
+  <%= f.error_messages %>
+
+ <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :track %><br />
+    <%= f.collection_select(:track_id, Track.find(:all, :order => "name"), :id, :name) %>
+  </p>
+  <p>
+    <%= f.label :date %><br />
+    <%= f.datetime_select(:racetime, :minute_step => 15) %> Eastern
+  </p>
+  <p>
+    <%= f.label :notes %><br />
+    <%= f.text_area :notes, :rows => 8 %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @race %> |
+<%= link_to 'Back', races_path %>

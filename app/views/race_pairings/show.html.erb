@@ -1,0 +1,23 @@
+<p>
+  <b>Car:</b>
+  <%=h @race_pairing.car_id %>
+</p>
+
+<p>
+  <b>League membership:</b>
+  <%=h @race_pairing.league_membership_id %>
+</p>
+
+<p>
+  <b>Race:</b>
+  <%=h @race_pairing.race_id %>
+</p>
+
+<p>
+  <b>Preference order:</b>
+  <%=h @race_pairing.preference_order %>
+</p>
+
+
+<%= link_to 'Edit', edit_race_pairing_path(@race_pairing) %> |
+<%= link_to 'Back', race_pairings_path %>

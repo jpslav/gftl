@@ -1,0 +1,60 @@
+<div id="pageHeading">League Memberships</div>
+
+<% if @current_user_leagues.nil? || @current_user_leagues.empty? %>
+
+You aren't a member of any league yet.  <%= link_to 'Join one now!', new_league_membership_path %>
+
+<% else %>
+
+<table id="list">
+  <tr>
+    <th width="20%">League</th>
+    <th></th>
+    <th width="30%">Member</th>
+    <th width="50%">Draft List</th>
+    <th colspan="3"></th>
+  </tr>
+<% rowtype = "evenrow"%>
+	<% @current_user_leagues.each do |league| %>
+	<tr class="<%= rowtype %>">
+		<td colspan="1"><%=h league.name %></td>
+		<td colspan="5">
+	</tr>
+	<% rowtype = "oddrow" == rowtype ? "evenrow" : "oddrow" %>
+	<% league.league_memberships.each do |membership| %>
+	<% @current_membership = membership %>
+	<tr class="<%= rowtype %>">
+		<% my_owner = membership.owner.user.id == current_user.id %>
+		<td></td>
+		<td><%= image_tag("star16x16.gif", :border => 0) if my_owner %></td>
+		<td><%= link_to membership.owner.name, owner_path(membership.owner) %></td>
+		<td><% if my_owner && !membership.draft_list.nil? %>
+			<%= form_tag ({:action => "select_draft_list"}) do %>
+			<%= select_tag 'chosen_draft_list', 
+			  options_from_collection_for_select(@available_draft_lists, :id, :name, @current_membership.draft_list.id)
+			-%>
+			<%= hidden_field_tag 'membership_id', @current_membership.id %>
+			<%= submit_tag 'Change' -%>
+
+			<% end %>
+			
+			<% end %></td>
+		<td>&nbsp;&nbsp;&nbsp;</td>
+		<td><%= link_to "Play!", play_membership_path(membership.id)  if my_owner %></td>
+		<td><%= link_to trash_icon, membership, 
+				:confirm => 'Are you sure you want to remove ' + membership.owner.name + ' from ' + membership.league.name + "?", 
+				:method => :delete if current_user.is_administrator %></td>
+	</tr>
+	<% rowtype = "oddrow" == rowtype ? "evenrow" : "oddrow" %>
+	<% end %>
+		
+	<% end %>
+</table>
+
+<p>
+	<%= link_to 'Join a new league', new_league_membership_path %>
+<p><p>
+The <%= image_tag("star16x16.gif", :border => 0) %> icon marks your owners.
+
+
+<% end %>

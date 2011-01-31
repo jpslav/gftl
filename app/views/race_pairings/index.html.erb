@@ -1,0 +1,26 @@
+<h1>Listing race_pairings</h1>
+
+<table>
+  <tr>
+    <th>Car</th>
+    <th>League membership</th>
+    <th>Race</th>
+    <th>Preference order</th>
+  </tr>
+
+<% @race_pairings.each do |race_pairing| %>
+  <tr>
+    <td><%=h race_pairing.car_id %></td>
+    <td><%=h race_pairing.league_membership_id %></td>
+    <td><%=h race_pairing.race_id %></td>
+    <td><%=h race_pairing.preference_order %></td>
+    <td><%= link_to 'Show', race_pairing %></td>
+    <td><%= link_to 'Edit', edit_race_pairing_path(race_pairing) %></td>
+    <td><%= link_to 'Destroy', race_pairing, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New race_pairing', new_race_pairing_path %>

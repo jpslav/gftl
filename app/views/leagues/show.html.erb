@@ -1,0 +1,33 @@
+<p>
+  <b>Name:</b>
+  <%=h @league.name %>
+</p>
+
+<p>
+  <b>Year:</b>
+  <%=h @league.year %>
+</p>
+
+<p>
+  <b>Number of members</b>
+  <%=h @league.num_members %>
+</p>
+
+<p>
+  <b>Max number of member</b>
+  <%=h @league.max_owners %>
+</p>
+
+<p>
+  <b>Joining password:</b>
+  <%=h @league.password %>
+</p>
+
+<p>
+  <b>Is registration open:</b>
+  <%=h @league.is_registration_open %>
+</p>
+
+
+<%= link_to 'Edit', edit_league_path(@league) %> |
+<%= link_to 'Back', leagues_path %>

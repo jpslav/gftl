@@ -1,0 +1,62 @@
+<% ranked_preferences = @draft_list.ranked_preferences %>
+
+<% num_preferences = ranked_preferences.size %>
+<% preferences_per_column = 10 %>
+<% num_columns = (num_preferences.to_f / preferences_per_column).ceil %>
+<% column_spacing = 7 %>
+<% line_height = 1.3 %>
+
+<style>
+
+#preferences ol {
+	list-style: none;
+	 margin: 0;
+  padding: 10;
+  float: left;
+  width: <%= column_spacing*6 %>em;
+}
+ 
+#preferences li {
+  padding: 0;
+  margin-right: 3em;
+  width: <%= column_spacing-3 %>em;
+  float: left;
+  line-height: <%= line_height %>em;
+}
+ 
+<% 1.upto(num_columns) do |colnum| %>
+.col<%= colnum %> {margin-left: <%= 3 + column_spacing*(colnum-1) %>em;}
+<% end %>
+ 
+.coltopper {margin-top: -<%= preferences_per_column * line_height %>em;}
+</style>
+
+<ol id="preferences">
+	<% count = 0 %>
+	<% ranked_preferences.each do |p| %>
+	    <% class_tag = "" %>
+	    <% class_tag = "col#{(count/preferences_per_column).ceil+1}" %> 
+	    <% class_tag = class_tag + " coltopper" if 0 != count && count % preferences_per_column == 0%>
+		<% domid = "pref_#{p.id}"%>
+		<li id="<%= domid %>"
+			
+			onMouseover="<%= remote_function(:update => "hover_drivers",
+			  								 :url => { :action => :show_hover_drivers ,  :id => p.id})%>;"
+			><i><b><%= p.car.number %></b></i>
+		</li>
+		<% count = count+1 %>
+	<% end %>
+	<!-- write out br's for remaining empty rows to make ol height big enough -->
+	<% next_row = count % preferences_per_column %>
+	<% if 0 != next_row %>
+		<% next_row.upto(preferences_per_column) do |r| %>
+		<!--	<br/> -->
+		<% end %>
+	<% end %>
+	
+</ol>
+
+<%= sortable_element 'preferences', 
+					 :url => {:action => 'sort_preferences'},
+					 :update => 'preferenceList', :constraint => false, :ghosting => false, :revert => false %>
+

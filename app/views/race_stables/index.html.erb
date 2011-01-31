@@ -1,0 +1,22 @@
+<div id="pageHeading">Race Stables</div>
+<p>
+	<%= form_tag ({:action => "run_weekly_draft"}) do %>
+	<%= submit_tag 'Run Weekly Draft', :confirm => "Are you sure you want to run the weekly draft?" -%>
+	<% end %>
+	<p>
+	<%= form_tag ({:action => "email_weekly_draft_results"}) do %>
+	<%= submit_tag 'Email Race Draft Results', :confirm => "Are you sure you want to send the weekly draft email?" -%>
+	<% end %>
+	<p>
+The following list of modifiable race stables is provided for the hopefully rare occasions when manual changes to the stables must be made.  Normally, the weekly automated draft will populate this information.
+<p>
+<% stables_by_league = @race_stables.group_by{|s| s.league_membership.league}%>
+
+<% stables_by_league.each do |league,stables|%>
+	<div id="subSectionHeading"><%= league.name %></div>
+		<%= link_to 'Add a new race stable', new_race_stable_path %>
+	<%= render(:partial => 'race_stables/list',:object => @race_stables)%>
+<% end %>
+<br />
+
+<%= link_to 'Add a new race stable', new_race_stable_path %>

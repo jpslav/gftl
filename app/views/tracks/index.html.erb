@@ -1,0 +1,35 @@
+<div id="pageHeading">Tracks</div>
+
+<% if @tracks.nil? || @tracks.empty? %>
+
+There are no tracks in the system yet.  <%= link_to 'Add one now!', new_track_path %>
+
+<% else %>
+
+<table id="list">
+  <tr>
+    <th width="60%">Name</th>
+    <th width="40%">Location</th>
+    <th colspan="3"></th>
+  </tr>
+
+<% rowtype = "evenrow"%>
+<% @tracks.each do |track| %>
+  <tr class="<%= rowtype %>">
+    <td><%=h track.name %></td>
+    <td><%=h track.location %></td>
+    <td><%= link_to show_icon, track %></td>
+    <td><%= link_to edit_icon, edit_track_path(track) %></td>
+    <td><%= link_to trash_icon, track, 
+			:confirm => 'Are you sure you want to delete ' + track.name + "?", 
+			:method => :delete %></td>
+  </tr>
+  <% rowtype = "oddrow" == rowtype ? "evenrow" : "oddrow" %>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Add a new track', new_track_path %>
+
+<% end %>

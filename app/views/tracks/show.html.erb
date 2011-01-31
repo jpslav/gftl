@@ -1,0 +1,19 @@
+<table>
+	
+<tr>
+	<td>Name:</td>
+	<td><%=h @track.name %></td>
+</tr>
+<tr>
+	<td>Location:</td>
+	<td><%=h @track.location %></td>
+</tr>
+<tr>
+	<td>Notes:</td>
+	<td><%=h @track.notes %>
+  </p>
+</tr>
+
+</table>
+<%= link_to 'Edit', edit_track_path(@track) %> |
+<%= link_to 'Back', tracks_path %>

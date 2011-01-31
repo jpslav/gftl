@@ -1,0 +1,16 @@
+
+<p>
+  <b>Name:</b>
+  <%=h @owner.name %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @owner.user.full_name %>
+</p>
+
+
+<% if @owner.user == current_user %>
+<%= link_to 'Edit', edit_owner_path(@owner) %> |
+<% end %>
+<%= link_to 'List My Owners', owners_path %>

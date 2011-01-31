@@ -1,0 +1,44 @@
+<div id="pageHeading">Edit Race Stable</div>
+
+<% @memberships = LeagueMembership.all.select{|m| m.league.year == Time.now.year} %>
+<% @races = Race.find_all_by_year(Time.now.year)%>
+<% @cars = Car.find_all_by_year(Time.now.year)%>
+
+<%= form_for(@race_stable) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :league_membership_id %><br />
+    <%= f.collection_select(:league_membership_id, @memberships, :id, :toString)%>
+  </p>
+  <p>
+    <%= f.label :race_id %><br />
+    <%= f.collection_select(:race_id, @races, :id, :name)%>
+  </p>
+  <p>
+    <%= f.label :car1_id %><br />
+    <%= f.collection_select(:car1_id, @cars, :id, :numberAndDriver)%>    
+  </p>
+  <p>
+    <%= f.label :car2_id %><br />
+    <%= f.collection_select(:car2_id, @cars, :id, :numberAndDriver)%>    
+  </p>
+  <p>
+    <%= f.label :car3_id %><br />
+   <%= f.collection_select(:car3_id, @cars, :id, :numberAndDriver)%>    
+  </p>
+  <p>
+    <%= f.label :car4_id %><br />
+    <%= f.collection_select(:car4_id, @cars, :id, :numberAndDriver)%>    
+  </p>
+  <p>
+    <%= f.label :car4_id %><br />
+    <%= f.collection_select(:car5_id, @cars, :id, :numberAndDriver)%>    
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @race_stable %> |
+<%= link_to 'Back', race_stables_path %>

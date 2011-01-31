@@ -1,0 +1,2 @@
+module RaceStablesHelper
+end

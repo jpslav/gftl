@@ -1,0 +1,40 @@
+<div id="pageHeading">Owner's Box</div>
+
+An owner is a player in the fantasy game.  You can have multiple owners and each owner can be a part of one or more leagues.  A league is a group of owners playing against each other in a given race season.
+<p>
+You can also think of an owner as a team.  Each owner/team will own a certain cars throughout the race season.  An owner accumulates points for its cars as the season progresses.
+<p>
+While you can create an owner with your real name, owner names can be anything you want.  Feel free to be creative.
+<p>
+
+<% if !@owners.empty? %>
+
+<table id="list">
+  <tr>
+    <th width="60%" colspan="4">Name</th>
+  </tr>
+
+<% rowtype = "evenrow"%>
+<% @owners.each do |owner| %>
+  <tr class="<%= rowtype %>">
+    <td><%=h owner.name %></td>
+    <td><%= link_to show_icon, owner %></td>
+    <td><%= link_to edit_icon, edit_owner_path(owner) %></td>
+    <td><%= link_to trash_icon, owner, 
+			:confirm => 'Are you sure you want to delete ' + owner.name + "?", 
+			:method => :delete %></td>
+  </tr>
+  <% rowtype = "oddrow" == rowtype ? "evenrow" : "oddrow" %>
+<% end %>
+
+</table>
+
+<br />
+<%= link_to 'Create a new owner', new_owner_path %>
+
+<% else %>
+
+You don't have any owners yet.  <%= link_to 'Create one now!', new_owner_path %>
+
+<% end %>
+

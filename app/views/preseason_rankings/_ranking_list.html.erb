@@ -1,0 +1,26 @@
+
+<%= form_tag ({:action => "nillo"}, {:onsubmit => 'return false;' }) do %>
+<span style="float: left;">
+<%= select_tag 'rankings', 
+  options_from_collection_for_select(@rankings, "id", "toString", @selected_ranking_id),
+  { :multiple => false, :size =>20#, :class=>'editStepLeft disableOnEditStep'
+	} 
+%>
+</span>
+<span style="float: right; clear: right;">
+<span class="aSpan">
+<%= submit_to_remote 'Move Up', 'Move Up', 
+                     :url => { :controller => 'preseason_rankings', :action => 'move_ranking_up'}, 
+					 #:url => {:action => "test"},
+                   #  :html => { :class => "disableOnEditStep"},
+                     :update => 'rankingsList' %><br/>
+<%= submit_to_remote 'movedown', 'Move Down', 
+                     :url => { :controller => 'preseason_rankings', :action => 'move_ranking_down'},
+                     #:html => { :class => "disableOnEditStep"},
+                     :update => 'rankingsList' %><br/>
+</span>
+</span>
+<% end %>
+
+
+

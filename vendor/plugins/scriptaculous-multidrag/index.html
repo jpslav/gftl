@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>Multi Drag and Drop / Sortable</title>
+    <style type="text/css" media="screen">
+      body {
+        margin: 0;
+        margin-bottom: 25px;
+        padding: 0;
+        background-color: #f0f0f0;
+        font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
+        font-size: 13px;
+        color: #333;
+      }
+      
+      h1 {
+        font-size: 28px;
+        color: #000;
+      }
+      
+      a  {color: #03c}
+      a:hover {
+        background-color: #03c;
+        color: white;
+        text-decoration: none;
+      }
+      
+      
+      #page {
+        background-color: #f0f0f0;
+        width: 750px;
+        margin: 0;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      #content {
+        float: left;
+        background-color: white;
+        border: 3px solid #aaa;
+        border-top: none;
+        padding: 25px;
+        width: 500px;
+      }
+      
+      #sidebar {
+        float: right;
+        width: 175px;
+      }
+
+      #footer {
+        padding: 10px;
+        text-align: center;
+        clear: both;
+      }
+
+      #sortable {
+        list-style: none;
+        padding: 0px;
+        height: 500px;
+      } 
+      
+      #sortable li {
+        width: 100px;
+        height: 100px;
+        float: left;
+        border: 1px solid black;
+        font-size: 300%;
+        text-align: center;
+        margin: 10px;
+      }
+      #target {
+        height: 600px;
+        border: 2px dotted black;
+        list-style-type: none;
+        padding: 2px;
+        font-size: 75%;
+        overflow: auto;
+      }
+      .dropmarker {
+        margin-top: 5px;
+        height: 90px;
+        width:    2px;
+        background-color: red;
+      }
+      .activated {
+        background-color: yellow;
+      }
+      .dragcount {
+        z-index:  1001;
+        font-size: 12px;
+        border: 2px solid red;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        line-height: 20px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        position: relative;
+        left: 73px;
+        top:  25px;;
+      }
+      
+    </style>
+    <script type="text/javascript" src="prototype.js"></script>
+    <script type="text/javascript" src="effects.js"></script>
+    <script type="text/javascript" src="dragdrop.js"></script>
+    <script type="text/javascript" src="multidrag.js"></script>
+    <script type="text/javascript" src="demo.js"></script>
+  </head>
+  <body>
+    <div id="page">
+      <div id="sidebar">
+        <h3>Drop target area</h3>
+        <ul id='target'></ul>
+      </div>
+
+      <div id='content'>
+
+      <h1>Scripty sortable / multi drag drop example</h1>
+      <p>
+          Click on multiple elements to resort or drag them at once /
+          use shift+click to select more than one element at once /
+          click between the elements to deselect all activated elements.
+      </p>
+
+        <ul id="sortable">
+        <!-- make sure your ids begin with xxxx_ Sortable.sequence won't
+             work if not! -->
+          <li id='item_0'>0</li>
+          <li id='item_1'>1</li>
+          <li id='item_2'>2</li>
+          <li id='item_3'>3</li>
+          <li id='item_4'>4</li>
+          <li id='item_5'>5</li>
+          <li id='item_6'>6</li>
+          <li id='item_7'>7</li>
+          <li id='item_8'>8</li>
+          <li id='item_9'>9</li>
+          <li id='item_A'>A</li>
+          <li id='item_B'>B</li>
+          <li id='item_C'>C</li>
+          <li id='item_D'>D</li>
+          <li id='item_E'>E</li>
+          <li id='item_F'>F</li>
+        </ul>
+
+      </div>
+      
+      <div id="footer">
+        <a href='http://github.com/panter/scriptaculous-multidrag'>
+          View the source...
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

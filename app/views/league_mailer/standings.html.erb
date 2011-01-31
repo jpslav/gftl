@@ -1,0 +1,64 @@
+<% sectionHeadingStyle = "font-size: 14px; font-weight: bold; padding-top: 8px; padding-bottom: 4px;font-style: italic; margin-top: 16px; margin-bottom: 6px; border-bottom: 1px solid; border-color: #000000;" %>
+
+<% cellStyle = "font-size: 12px;"%>
+<% columnHeadingStyle = "font-size: 12px;"%>
+
+<div style="width: 600px; font-family: sans-serif; font-size: 12px; font-weight: normal; font-color: #000000;">
+
+Howdy race fans,
+
+<br clear="all"/><br clear="all"/>
+
+The updated standings and draft pool for the next race (<%= Race.nextRace.name %>) are shown below.  <!-- Congratulations to XXXXX, the owner of last week's winner! -->
+
+<br clear="all"/><br clear="all"/>
+
+The next draft will be run on Wednesday night, so make sure to make your <a href="http://gftl.jpslavinsky.com/league_memberships">draft list selections</a> before then.
+
+<div style="<%= sectionHeadingStyle %>">Standings</div>
+
+Here are the standings for our current "mini-chase" (each season is divided into three separate mini-chases).  Draft order for next week will run backwards through this list for the first two rounds, followed by an in-order run for the last round.
+
+<br clear="all"/><br clear="all"/>
+
+<% rank = 0 %>
+<% sorted_members = @league.league_memberships.sort{|a,b| b.current_mini_chase_points <=> a.current_mini_chase_points}%>
+
+<table width="400">
+  <tr style="border-bottom: 1px solid; border-color: #000000;">
+	<th width="5%" style="<%= columnHeadingStyle %>">&nbsp;</th>
+    <th width="65%" align="left" style="<%= columnHeadingStyle %>">Owner</th>
+	<th width="15%" align="center" style="<%= columnHeadingStyle %>">Total Points</th>
+	<th width="15%" align="center" style="<%= columnHeadingStyle %>">Weekly Points</th>
+  </tr>
+  <% sorted_members.each do |member| %>
+  <% stable = RaceStable.find_by_league_membership_id_and_race_id(member.id, Race.lastRace.id) %>
+  <tr>
+	<td style="<%= cellStyle %>"><%= rank = rank + 1 %>.</td>
+    <td align="left" style="<%= cellStyle %>"><%= member.owner.name %></td>
+    <td align="center" style="<%= cellStyle %>"><%= member.current_mini_chase_points %></td>
+    <td align="center" style="<%= cellStyle %>"><%= stable.points %></td>
+  </tr>
+  <% end %>
+</table>
+
+<div style="<%= sectionHeadingStyle %>">Draft Pool (Top 35 in points)</div>
+
+Your draft stables for next week will be drawn from the following 35 cars.
+
+<br clear="all"/><br clear="all"/>
+
+<table width="400">
+  <tr style="border-bottom: 1px solid; border-color: #000000;">
+    <th width="15%" align="center" style="<%= columnHeadingStyle %>">Car #</th>
+	<th width="85%" align="left" style="<%= columnHeadingStyle %>">Typical Driver(s)</th>
+  </tr>
+  <% Car.top_35.each do |car| %>
+  <tr>
+    <td align="center" style="<%= cellStyle %>"><%= car.number %></td>
+    <td align="left" style="<%= cellStyle %>"><%= car.normal_drivers %></td>
+  </tr>
+  <% end %>
+</table>
+
+</div>

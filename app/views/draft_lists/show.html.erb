@@ -1,0 +1,15 @@
+
+
+<p>
+  <b>Name:</b>
+  <%=h @draft_list.name %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%=h @draft_list.notes %>
+</p>
+
+
+<%= link_to 'Edit', edit_draft_list_path(@draft_list) %> |
+<%= link_to 'Back', draft_lists_path %>

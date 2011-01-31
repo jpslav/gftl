@@ -1,0 +1,91 @@
+<div id="pageHeading">Race Results</div>
+
+<% races = Race.racesUpToToday.sort{|a,b| b.racetime <=> a.racetime} %>
+
+<% if races.nil? || races.empty? %>
+
+	There haven't been any races yet this year.  Check back after the first race to enter results for it.
+
+<% else %>
+
+	<% races.each do |race| %>
+
+	<% results = race.race_results.sort{|x,y| x.car.number.to_i <=> y.car.number.to_i} %>
+
+	<% if results.nil? || results.empty? %>
+		<b><%= race.name %> (<%= race.standardRaceTimeString %>)</b>: No results entered yet.  
+		<%= link_to 'Add cars to this race now.', :controller => "race_results", :action => "pick_cars", :id => race.id %>, 
+		<%= link_to 'Import results', :controller => "race_results", :action => "import_results", :id => race.id%><p>
+	<% else %>
+
+		<b><%=h race.name%></b> (<%=h race.standardRaceTimeString %> ET), 
+		<%= link_to 'Add more cars.', :controller => "race_results", :action => "pick_cars", :id => race.id %>
+		<%= link_to 'Import more results', :controller => "race_results", :action => "import_results", :id => race.id%>
+		<%= link_to 'Delete all results', :controller => "race_results", :action => "destroy_by_race", :id => race.id%>
+		<table id="list" width="300">
+		  <tr>
+			<th width="10%">&nbsp;</th>
+		    <th width="45%">Car</th>
+		    <th width="45%">Points Change</th>
+		    <th colspan="4"></th>
+		  </tr>
+  
+  
+		  <% rowtype = "evenrow"%>
+		  <% results.each do |result| %>
+		    <% @race_result = result %>
+		    <% edit_icon_id = "edit_icon_" + result.id.to_s %>
+		  	<tr class="<%= rowtype %>">
+			    <td></td>
+			
+				<td><%= result.car.number %></td>
+				
+				<!-- The external control needs to come before the in place editor -->
+				<td><% if result.points_delta.nil? -%>
+					<%= link_to edit_icon, "#", :id => edit_icon_id %> 
+					<% end -%>
+					<%= in_place_editor_field :race_result, :points_delta, {}, 
+											  {:external_control => edit_icon_id, :script => true} %>
+				</td>
+				<td><%= link_to trash_icon, result, 
+								:confirm => "Are you sure you want to remove the result for car " + 
+								"#{result.car.number} in race #{race.name}?", 
+								:method => :delete %>
+				</td>
+				<td colspan="2"></td>
+			</tr>
+		  <% rowtype = "oddrow" == rowtype ? "evenrow" : "oddrow" %>
+		  <% end %>
+
+		</table>
+		<p>
+	<% end %>
+
+	<% end %>
+
+<% end %>
+
+<!--
+<table>
+  <tr>
+    <th>Car</th>
+    <th>Race</th>
+    <th>Points delta</th>
+  </tr>
+<% @race_results.each do |race_result| %>
+  <tr>
+    <td><%=h race_result.car_id %></td>
+    <td><%=h race_result.race_id %></td>
+    <td><%=h race_result.points_delta %></td>
+    <td><%= link_to 'Show', race_result %></td>
+    <td><%= link_to 'Edit', edit_race_result_path(race_result) %></td>
+    <td><%= link_to 'Destroy', race_result, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New race_result', new_race_result_path %>
+
+-->
