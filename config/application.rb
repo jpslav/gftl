@@ -39,8 +39,5 @@ module Gftl2
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
-    
-    # Added for authentication per http://avnetlabs.com/rails/restful-authentication-with-rails-2
-    config.active_record.observers = :user_observer
   end
 end
