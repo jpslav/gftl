@@ -21,6 +21,6 @@ production:
    database: gftl_production #following rails db naming convention
    username: gftl_user
    password: emerald1.
-   host: mysql.jpslavinsky.com
+   host: jpslav.com
    port: 3306  #not necessary since its the standard mysql port
    

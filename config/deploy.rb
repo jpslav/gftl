@@ -21,6 +21,8 @@ role :db,  domain, :primary => true
 set :deploy_to, applicationdir
 set :deploy_via, :remote_cache
 
+set :copy_exclude, [".git", "spec"]
+
 # additional settings
 default_run_options[:pty] = true  # Forgo errors when deploying from windows
 #ssh_options[:keys] = %w(/Path/To/id_rsa)            # If you are using ssh_keys
