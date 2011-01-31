@@ -1,1 +1,3 @@
 rake rails:upgrade:check
+
+bundle install --without production
