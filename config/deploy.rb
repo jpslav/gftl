@@ -1,3 +1,5 @@
+require "bundler/capistrano"
+
 set :user, 'jpslav'  # Your dreamhost account's username
 set :domain, 'jpslav.com'  # Dreamhost servername where your account is located 
 set :ssh_options, { :forward_agent => true }
