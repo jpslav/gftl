@@ -1,7 +1,7 @@
 <h1>Editing owner</h1>
 
 <%= form_for(@owner) do |f| %>
-  <%= f.error_messages %>
+  <%= render "shared/error_messages", :target => @owner %> 
 
   <p>
     <%= f.label :name %><br />

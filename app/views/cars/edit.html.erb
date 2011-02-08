@@ -1,7 +1,7 @@
 <h1>Editing car</h1>
 
 <%= form_for(@car) do |f| %>
-  <%= f.error_messages %>
+  <%= render "shared/error_messages", :target => @car %> 
 
   <p>
     <%= f.label :year %><br />

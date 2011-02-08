@@ -5,7 +5,7 @@
 <% @cars = Car.find_all_by_year(Time.now.year)%>
 
 <%= form_for(@race_stable) do |f| %>
-  <%= f.error_messages %>
+  <%= render "shared/error_messages", :target => @race_stable %> 
 
   <p>
     <%= f.label :league_membership_id %><br />

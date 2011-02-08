@@ -4,7 +4,7 @@
 <% @cars = Car.find_all_by_year(Time.now.year)%>
 
 <%= form_for(@owned_stable) do |f| %>
-  <%= f.error_messages %>
+  <%= render "shared/error_messages", :target => @owned_stable %> 
 
   <p>
 	
