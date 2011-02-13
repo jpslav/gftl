@@ -128,4 +128,14 @@ class LeagueMembershipsController < ApplicationController
 
     redirect_to(league_memberships_url)    
   end
+  
+  def select_darkhorse
+    logger.info(params.inspect)
+    
+    membership = LeagueMembership.find_by_id(params[:membership_id])
+    membership.owned_stable.darkhorse_car_id = params[:chosen_darkhorse]
+    membership.owned_stable.save!
+    
+    redirect_to(league_memberships_url)    
+  end
 end

@@ -16,7 +16,7 @@ class Car < ActiveRecord::Base
   end
   
   def populate_references
-    # Add this car to all draft lists
+    # Add this car to all draft lists 
     DraftList.add_car(self)
     
     # Add this car to the preseason rankings
@@ -28,7 +28,26 @@ class Car < ActiveRecord::Base
   end
   
   def self.top_35
+    self.top(35)
+  end
+  
+  def self.top_10
+    self.top(10)
+  end
+  
+  def self.top(numCars)
     cars = Car.find_all_by_year(Time.now.year).sort{|a,b| b.total_points <=> a.total_points}
-    cars[0..34]
+    cars[0..numCars-1]
+  end
+  
+  def self.darkhorseCandidates(year)
+    candidates = Car.find_all_by_year(Time.now.year)
+    candidates.sort{|a,b| a.number.to_i <=> b.number.to_i}
+    candidates.delete_if {|c| !c.validDarkhorse?}
+  end
+  
+  def validDarkhorse?
+    !PreseasonRanking.top12(self.year).include?(self) && 
+    (!RaceResult.anyForYear(self.year) || !Car.top_10.include?(self))
   end
 end

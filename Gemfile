@@ -18,6 +18,7 @@ gem 'devise'
 
 group :development, :test do
 	gem 'sqlite3-ruby', :require => 'sqlite3'
+	gem 'ruby-debug'
 end
 
 group :production do

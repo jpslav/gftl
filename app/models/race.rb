@@ -13,6 +13,7 @@ class Race < ActiveRecord::Base
   
   def self.racesUpThroughNextOne
     races = racesUpToToday
+    return races if races.empty?
     races.sort!{|x,y| x.racetime <=> y.racetime}
     nextRace = races.last.nextRace
     if !nextRace.nil?
@@ -52,6 +53,10 @@ class Race < ActiveRecord::Base
   
   def name_with_date
     name + " (" + racetime.strftime('%b %d %Y') + ")"
+  end
+  
+  def self.firstRaceOfYear(year)
+    find_all_by_year(year).sort {|x,y| x.racetime <=> y.racetime }
   end
   
 end

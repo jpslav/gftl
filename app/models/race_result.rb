@@ -8,4 +8,10 @@ class RaceResult < ActiveRecord::Base
   
   belongs_to :race
   belongs_to :car
+  
+  def self.anyForYear(year)
+    firstRaceOfYear = Race.firstRaceOfYear(year)
+    results = RaceResult.find_all_by_race_id(firstRaceOfYear.id)  
+    results != nil && !results.empty?
+  end
 end

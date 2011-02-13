@@ -1,6 +1,8 @@
 class PreseasonRanking < ActiveRecord::Base
   belongs_to :car
   
+  # TODO make this like the draft lists!
+  
   public 
 
   def self.add_car(car)
@@ -28,6 +30,15 @@ class PreseasonRanking < ActiveRecord::Base
         nextRanking = PreseasonRanking.find_by_year_and_ranking(self.year, self.ranking+1)
         PreseasonRanking.swapRanks(self, nextRanking)
       end
+
+  def self.top12(year)
+    ranked_cars = find_all_by_year(year)
+    
+    return [] if ranked_cars.nil?
+
+    ranked_cars.sort! {|a,b| a.ranking <=> b.ranking}
+    ranked_cars[0..11]    
+  end
 
   private
 

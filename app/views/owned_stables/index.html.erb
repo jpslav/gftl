@@ -6,23 +6,23 @@
   <tr>
     <th width="40%">League</th>
     <th width="40%">Owner</th>
-    <th width="10%">Car 1</th>
-    <th width="10%">Car 2</th>
+    <th width="10%">Franchise</th>
+    <th width="10%">Darkhorse</th>
     <th colspan="2"></th>
   </tr>
 
 <% rowtype = "evenrow"%>
 <% groups.each do |league, stables| %>
   <tr class="<%= rowtype %>">
-    <td colspan="7"><%=h league.name %></td>
+    <td colspan="6"><%=h league.name %></td>
   </tr>
   <% rowtype = "oddrow" == rowtype ? "evenrow" : "oddrow" %>
   <% stables.each do |stable| %>
   <tr>
 	<td>&nbsp;</td>
 	<td><%=h stable.league_membership.owner.name %></td>
-    <td><%=h stable.car1.nil? ? "---" : stable.car1.number %></td>
-    <td><%=h stable.car2.nil? ? "---" : stable.car2.number %></td>
+    <td><%=h stable.franchise_car.nil? ? "---" : stable.franchise_car.number %></td>
+    <td><%=h stable.darkhorse_car.nil? ? "---" : stable.darkhorse_car.number %></td>
     <td><%= link_to edit_icon, edit_owned_stable_path(stable) %></td>
     <td><%= link_to trash_icon, stable, 
 			:confirm => 'Are you sure you want to delete the stable for ' + stable.league_membership.toString + "?", 

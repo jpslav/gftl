@@ -10,9 +10,9 @@ class League < ActiveRecord::Base
   def validate
     errors.add(:year, "The year should be after 2009.") if year < 2010
     
-    if max_owners < 2 || max_owners > 10
+    if max_owners < 2 || max_owners > 13
       errors.add(:max_owners, 
-                 "The maximum number of owners should be in the range 2 to 10.")
+                 "The maximum number of owners should be in the range 2 to 13.")
     end
   end
   

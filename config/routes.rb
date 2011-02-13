@@ -22,6 +22,19 @@ Gftl2::Application.routes.draw do
   match 'league_memberships/play/:id' => 'league_memberships#play', :as => 'play_membership'
   match 'league_details/' => 'league_details#index', :as => 'league_details'
   
+  get "leagues/email_standings"
+
+  match "league_memberships/select_draft_list" => 'league_memberships#select_draft_list'
+  match 'league_memberships/select_darkhorse' => 'league_memberships#select_darkhorse'
+  
+  match "race_results/pick_cars/:id" => "race_results#pick_cars"
+  match "race_results/import_results_cars/:id" => "race_results#import_results"
+  match "race_results/add_cars" => "race_results#add_cars"
+  #match "race_results/add_cars" => "race_results#add_cars"
+  get "race_results/destroy_by_race"
+  get "race_results/set_race_result_points_delta"  
+  
+  
   # Following lines added for authentication per 
   # http://avnetlabs.com/rails/restful-authentication-with-rails-2
  # match 'activate/:activation_code' => 'users#activate', :as => 'activate'
