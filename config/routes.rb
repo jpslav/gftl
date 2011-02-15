@@ -46,6 +46,10 @@ Gftl2::Application.routes.draw do
     post :sort, :on => :collection
   end
   
+  match "draft_lists/show_hover_drivers" => "draft_lists#show_hover_drivers"
+  
+#  get "draft_lists/show_hover_drivers"
+  
   # Following lines added for authentication per 
   # http://avnetlabs.com/rails/restful-authentication-with-rails-2
  # match 'activate/:activation_code' => 'users#activate', :as => 'activate'

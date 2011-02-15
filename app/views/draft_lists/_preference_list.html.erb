@@ -44,12 +44,12 @@
 		<% domid = "pref_#{p.id}"%>
 	
       
-        <li id="<%= domid %>"><span class="handle"><%= p.car.number %></span></li>
+        <li id="<%= domid %>" num="<%= p.id %>"><span class="handle"><%= p.car.number %></span></li>
       
       <% if false %>
         <li id="<%= domid %>"><span class="handle">[drag]</span><%= p.car.number %></li>
 		<!-->
-		<li id="<%= domid %>"
+		<li id="<%= domid %>" jp="hi"
 			
 			onMouseover="<% remote_function(:update => "hover_drivers",
 			  								 :url => { :action => :show_hover_drivers ,  :id => p.id})%>;"
@@ -77,28 +77,50 @@
 
 <% content_for :javascript do %>
 <%= javascript_tag do %>
-// Sorting the list
 
 $(document).ready(function(){
-$('#preferences').sortable({
-axis: 'y',
-dropOnEmpty: false,
-handle: '.handle',
-cursor: 'crosshair',
-items: 'li',
-opacity: 0.4,
-scroll: true,
-update: function(){
-$.ajax({
-type: 'post',
-data: $('#preferences').sortable('serialize'),
-dataType: 'script',
-complete: function(request){
-$('#preferences').effect('highlight');
-},
-url: '/draft_lists/sort'})
-}
+   
+   // Sorting the list
+   $('#preferences').sortable({
+      axis: 'y',
+      dropOnEmpty: false,
+      handle: '.handle',
+      cursor: 'crosshair',
+      items: 'li',
+      opacity: 0.4,
+      scroll: true,
+      update: function(){
+         $.ajax({
+            type: 'post',
+            data: $('#preferences').sortable('serialize'),
+            dataType: 'script',
+            complete: function(request){
+               $('#preferences').effect('highlight');
+            },
+            url: '/draft_lists/sort'
+         });
+      }
+   });
+   
+   // Show car detail on hover
+   $("li").hover(
+     function(){
+        $.ajax({
+           type: 'post',
+           data: ("num="+this.getAttribute('num')),
+           dataType: "script",
+           url: "/draft_lists/show_hover_drivers",
+           success: function(data) {
+              $('#hover_drivers').html(data);
+           }           
+        }); 
+     }, 
+     function () {
+        $('#hover_drivers').html("Car Detail: ---")
+     }
+   );
+   
 });
-});
+
 <% end %>
 <% end %>

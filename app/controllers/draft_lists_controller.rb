@@ -128,8 +128,9 @@ class DraftListsController < ApplicationController
   end
   
   def show_hover_drivers
-    hover_preference_car = DraftPreference.find(params["id"]).car
+    logger.debug(params)
+    hover_preference_car = DraftPreference.find(params[:num]).car
     @drivers = "# " + hover_preference_car.number + ": " + hover_preference_car.normal_drivers
-    render :partial => 'hover_drivers'
+    render :partial => 'hover_drivers.html.erb'
   end
 end
