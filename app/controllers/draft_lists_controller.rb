@@ -10,17 +10,6 @@ class DraftListsController < ApplicationController
     end
   end
 
-  # GET /draft_lists/1
-  # GET /draft_lists/1.xml
-#  def show
-#    @draft_list = DraftList.find(params[:id])
-#
-#    respond_to do |format|
-#      format.html # show.html.erb
-#      format.xml  { render :xml => @draft_list }
-#    end
-#  end
-
   # GET /draft_lists/new
   # GET /draft_lists/new.xml
   def new
@@ -109,22 +98,11 @@ class DraftListsController < ApplicationController
     end
   end
   
-  def test
-    logger.info "In test"
-  end
-  
   def sort
     sorted_preference_ids = params['pref']
     @draft_list = DraftPreference.find(sorted_preference_ids.first).draft_list
     @draft_list.reorder_preferences(sorted_preference_ids)
     render :partial => 'preference_list.html.erb'
-  end
-  
-  def sort_preferences
-    sorted_preference_ids = params['preferences']
-    @draft_list = DraftPreference.find(sorted_preference_ids.first).draft_list
-    @draft_list.reorder_preferences(sorted_preference_ids)
-    render :partial => 'preference_list'
   end
   
   def show_hover_drivers

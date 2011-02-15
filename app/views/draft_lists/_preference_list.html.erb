@@ -11,8 +11,8 @@
 <style>
 
 #preferences ol {
-	list-style: none;
-	 margin: 0;
+  list-style: none;
+  margin: 0;
   padding: 10;
   float: left;
   width: <%= column_spacing*6 %>em;
@@ -44,19 +44,9 @@
 		<% domid = "pref_#{p.id}"%>
 	
       
-        <li id="<%= domid %>" num="<%= p.id %>"><span class="handle"><%= p.car.number %></span></li>
+      <li id="<%= domid %>" num="<%= p.id %>"><span class="handle"><%= p.car.number %></span></li>
       
-      <% if false %>
-        <li id="<%= domid %>"><span class="handle">[drag]</span><%= p.car.number %></li>
-		<!-->
-		<li id="<%= domid %>" jp="hi"
-			
-			onMouseover="<% remote_function(:update => "hover_drivers",
-			  								 :url => { :action => :show_hover_drivers ,  :id => p.id})%>;"
-			><i><b><%= p.car.number %></b></i>
-		</li>
-		-->
-	   <% end %>
+     
 		<% count = count+1 %>
 	<% end %>
 	<!-- write out br's for remaining empty rows to make ol height big enough -->
@@ -69,11 +59,6 @@
 	
 </ol>
 
-<% if false %>
-<%= sortable_element 'preferences', 
-					 :url => {:action => 'sort_preferences'},
-					 :update => 'preferenceList', :constraint => false, :ghosting => false, :revert => false %>
-<% end %>
 
 <% content_for :javascript do %>
 <%= javascript_tag do %>
