@@ -30,11 +30,11 @@
 	<%= stylesheet_link_tag "yui_menubar_overrides", :media => "all"%>
 	<%= stylesheet_link_tag "gftl", :media => "all"%>
 
-    <% if @includePrototype && @includePrototype = true %>
-        <%= javascript_include_tag "prototype" %>
-    <% end %>
-	
+
 	<%= javascript_include_tag :defaults %>
+	
+	<%= javascript_include_tag :on_the_spot %>
+   
 	
 	<!-- Initialize and render the menu bar --> 
 	
@@ -193,7 +193,8 @@
         <!-- Rendering the main content of the page -->
        
 		<div id="mainContent">
-			<%= yield %>	
+			<%= yield %>
+			<%= yield :javascript %>	
 		</div>
 
         <br style="clear:both;" />

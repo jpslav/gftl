@@ -17,7 +17,7 @@ class DraftList < ActiveRecord::Base
   
   def add_car(car)
     next_rank = DraftPreference.count :conditions => {:draft_list_id => id}
-    preference = DraftPreference.new(:draft_list_id => id, :car => car, :rank => next_rank)
+    preference = DraftPreference.new(:draft_list_id => id, :car => car, :position => next_rank)
     preference.save!
   end
   
@@ -37,11 +37,11 @@ class DraftList < ActiveRecord::Base
   end
   
   def ranked_cars
-    DraftPreference.find_all_by_draft_list_id(id, :order => "rank").collect{|dp| dp.car}
+    DraftPreference.find_all_by_draft_list_id(id, :order => "position").collect{|dp| dp.car}
   end
   
   def ranked_preferences
-    DraftPreference.find_all_by_draft_list_id(id, :order => "rank")
+    DraftPreference.find_all_by_draft_list_id(id, :order => "position")
   end
   
   def reorder_preferences(ordered_ids)
@@ -49,7 +49,7 @@ class DraftList < ActiveRecord::Base
       nextRank = 0
       ordered_ids.each do |oid|
         preference = DraftPreference.find(oid)
-        preference.rank = nextRank
+        preference.position = nextRank
         preference.save!
         nextRank = nextRank + 1
       end

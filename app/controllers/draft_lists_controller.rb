@@ -113,6 +113,13 @@ class DraftListsController < ApplicationController
     logger.info "In test"
   end
   
+  def sort
+    sorted_preference_ids = params['pref']
+    @draft_list = DraftPreference.find(sorted_preference_ids.first).draft_list
+    @draft_list.reorder_preferences(sorted_preference_ids)
+    render :partial => 'preference_list.html.erb'
+  end
+  
   def sort_preferences
     sorted_preference_ids = params['preferences']
     @draft_list = DraftPreference.find(sorted_preference_ids.first).draft_list

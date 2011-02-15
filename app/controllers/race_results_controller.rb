@@ -2,7 +2,9 @@ class RaceResultsController < ApplicationController
   
   before_filter :admin_required
   
-  in_place_edit_with_validation_for :race_result, :points_delta
+  #in_place_edit_with_validation_for :race_result, :points_delta
+  
+  can_edit_on_the_spot
   
   # GET /race_results
   # GET /race_results.xml

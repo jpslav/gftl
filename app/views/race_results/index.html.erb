@@ -44,8 +44,7 @@
 				<td><% if result.points_delta.nil? -%>
 					<%= link_to edit_icon, "#", :id => edit_icon_id %> 
 					<% end -%>
-					<%= in_place_editor_field :race_result, :points_delta, {}, 
-											  {:external_control => edit_icon_id, :script => true} %>
+					<%= on_the_spot_edit @race_result, :points_delta %>
 				</td>
 				<td><%= link_to trash_icon, result, 
 								:confirm => "Are you sure you want to remove the result for car " + 

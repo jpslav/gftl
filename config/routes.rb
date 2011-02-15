@@ -34,6 +34,17 @@ Gftl2::Application.routes.draw do
   get "race_results/destroy_by_race"
   get "race_results/set_race_result_points_delta"  
   
+  # For on-the-spot...
+  resources :race_results do
+    collection do
+      post :update_attribute_on_the_spot
+    end
+  end
+  
+  # For draft list sorting:
+  resources :draft_lists do
+    post :sort, :on => :collection
+  end
   
   # Following lines added for authentication per 
   # http://avnetlabs.com/rails/restful-authentication-with-rails-2
