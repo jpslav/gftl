@@ -8,7 +8,7 @@ All cars that could be added to this race already have been!
 
 The following cars have not yet been added to the race '<%= @race.name %>'.  Select the cars you want to add and click "Add Cars".  You'll then be able to enter results (points) for these cars on the main page.
 <p>
-<%= form_tag ({:action => "add_cars"}) do %>
+<%= form_tag({:action => "add_cars"}) do %>
 <span style="float: left;">
 <%= select_tag 'chosen_cars', 
   options_from_collection_for_select(@cars_not_yet_in_race.sort{|a,b| a.number.to_i <=> b.number.to_i}, "id", "numberAndDriver"),

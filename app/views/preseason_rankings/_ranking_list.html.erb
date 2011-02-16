@@ -1,5 +1,5 @@
 
-<%= form_tag ({:action => "index"}, {:onsubmit => 'return false;' }) do %>
+<%= form_tag({:action => "index"}, {:onsubmit => 'return false;' }) do %>
 <span style="float: left;">
 <%= select_tag 'rankings', 
   options_from_collection_for_select(@rankings, "id", "toString", @selected_ranking_id),

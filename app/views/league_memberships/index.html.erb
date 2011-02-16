@@ -33,7 +33,7 @@ You aren't a member of any league yet.  <%= link_to 'Join one now!', new_league_
 		<td><%= getFranchiseCarString(@current_membership) %></td>
 		<td>
 		   <% if my_owner %>
-		      <%= form_tag ({:action => "select_darkhorse"}) do %>
+		      <%= form_tag({:action => "select_darkhorse"}) do %>
    			<%= select_tag 'chosen_darkhorse', 
    			   getDarkhorseSelectOptions(@current_membership)
    			-%>
@@ -46,7 +46,7 @@ You aren't a member of any league yet.  <%= link_to 'Join one now!', new_league_
 		</td>
 		<td>
 		   <% if my_owner && !membership.draft_list.nil? %>
-			   <%= form_tag ({:action => "select_draft_list"}) do %>
+			   <%= form_tag({:action => "select_draft_list"}) do %>
    			   <%= select_tag 'chosen_draft_list', 
       			  options_from_collection_for_select(
       			      @available_draft_lists, :id, :name, 
