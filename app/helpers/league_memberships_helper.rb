@@ -38,6 +38,8 @@ module LeagueMembershipsHelper
        darkhorseCandidates.insert(0,currentDarkhorse)
      end
      
+     darkhorseCandidates.sort!{|a,b| a.number.to_i <=> b.number.to_i}
+     
      selectedCar = !currentDarkhorse.nil? ? currentDarkhorse.id : nil
      
      options_from_collection_for_select(
