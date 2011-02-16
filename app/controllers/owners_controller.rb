@@ -2,6 +2,7 @@ class OwnersController < ApplicationController
   # GET /owners
   # GET /owners.xml
   def index
+    @load_javascript = true
     @owners = Owner.find_all_by_user_id(current_user.id)
 
     respond_to do |format|

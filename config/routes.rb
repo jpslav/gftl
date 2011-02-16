@@ -19,8 +19,9 @@ Gftl2::Application.routes.draw do
   
   match 'league_memberships/play/:id' => 'league_memberships#play', :as => 'play_membership'
   match 'league_details/' => 'league_details#index', :as => 'league_details'
-  
-  get "leagues/email_standings"
+
+  match "leagues/email_standings"
+#  get "leagues/email_standings"
   get "race_stables/run_weekly_draft"
   get "race_stables/email_weekly_draft_results"
 
@@ -30,6 +31,7 @@ Gftl2::Application.routes.draw do
   match "race_results/pick_cars/:id" => "race_results#pick_cars"
   match "race_results/import_results_cars/:id" => "race_results#import_results"
   match "race_results/add_cars" => "race_results#add_cars"
+  match "race_results/parse_results_table"
   get "race_results/destroy_by_race"
   get "race_results/set_race_result_points_delta"  
   

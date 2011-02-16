@@ -36,6 +36,9 @@
    	<%= javascript_include_tag :on_the_spot %>
    <% end %>
 	
+	<!-- Need this for deletes to work -->
+	<%= csrf_meta_tag %>
+	
 	<!-- Initialize and render the menu bar --> 
 	
 	<script type="text/javascript">

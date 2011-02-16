@@ -14,8 +14,8 @@ class LeagueMembership < ActiveRecord::Base
   
   # TODO clean up how we do times!!
   
-  @@day_before_allstar_race = Time.local(Time.now.year,5,21)
-  @@day_before_start_of_chase = Time.local(Time.now.year,9,18)
+  @@day_before_allstar_race = Time.local(Time.now.year,5,11)
+  @@day_before_start_of_chase = Time.local(Time.now.year,9,17)
   
   @@first_half_bounds = [Time.local(Time.now.year,1,1), @@day_before_allstar_race]
   @@second_half_bounds = [@@day_before_allstar_race, @@day_before_start_of_chase]
