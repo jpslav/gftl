@@ -28,13 +28,13 @@ body{	background-color:#222;}
 
 #banner {
 	/* background: #7da5f4; */
-	background: #012684;
+	background: #000000;
 	background-image:url('../images/gftl_banner_a_v2.jpg');
     padding-top: 4px;
     padding-bottom: 1px;
     border-bottom: 2px solid;
     /*color: #4d84f4;*/
-color: #fbb520;
+	color: #fbb520;
     text-align: center;
 	height: 45px;
 }
@@ -127,14 +127,28 @@ color: #fbb520;
     padding-right: 10px;   
 }
 
-#mainContent a {
+#mainContent a:link {
+COLOR: #B22222;
+}
+#mainContent a:visited {
+COLOR: #B22222;
+}
+#mainContent a:hover {
+COLOR: #000;
+}
+#mainContent a:active {
+COLOR: #B22222;
+}
+
+
+/*#mainContent a {
     color: #0000cc;
 }
 
 #mainContent a:hover {
 	color: #cc0000;
 }
-
+*/
 #footer {
 	background: #ffffff;
     padding-top: 4px;
@@ -177,7 +191,8 @@ color: #fbb520;
 }
 
 #mainCategory a:hover {
-	color: #4d84f4;
+/*	color: #4d84f4;*/
+	color: #B22222;
 }
 
 .floatRight {

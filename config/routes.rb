@@ -21,6 +21,8 @@ Gftl2::Application.routes.draw do
   match 'league_details/' => 'league_details#index', :as => 'league_details'
   
   get "leagues/email_standings"
+  get "race_stables/run_weekly_draft"
+  get "race_stables/email_weekly_draft_results"
 
   match "league_memberships/select_draft_list" => 'league_memberships#select_draft_list'
   match 'league_memberships/select_darkhorse' => 'league_memberships#select_darkhorse'
