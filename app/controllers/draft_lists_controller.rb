@@ -40,10 +40,19 @@ class DraftListsController < ApplicationController
       if @draft_list.save
         
         # Populate this list with all of the available cars
+
+        rankedCars = 
+          PreseasonRanking.find_all_by_year(
+                            @draft_list.year, 
+                            :order => "position").collect{|pr| pr.car}
         
-        Car.find_all_by_year(@draft_list.year, :order => "number").each do |car|
+        rankedCars.each do |car|
           @draft_list.add_car(car)
         end
+        
+        # Car.find_all_by_year(@draft_list.year, :order => "number").each do |car|
+        #   @draft_list.add_car(car)
+        # end
         
         flash[:notice] = 'Draft list was successfully created.'
         format.html { redirect_to(draft_lists_path) }
