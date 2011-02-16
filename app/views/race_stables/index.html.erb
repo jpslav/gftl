@@ -1,10 +1,10 @@
 <div id="pageHeading">Race Stables</div>
 <p>
-	<%= form_tag ({:action => "run_weekly_draft"}) do %>
+	<%= form_tag({:action => "run_weekly_draft"}) do %>
 	<%= submit_tag 'Run Weekly Draft', :confirm => "Are you sure you want to run the weekly draft?" -%>
 	<% end %>
 	<p>
-	<%= form_tag ({:action => "email_weekly_draft_results"}) do %>
+	<%= form_tag({:action => "email_weekly_draft_results"}) do %>
 	<%= submit_tag 'Email Race Draft Results', :confirm => "Are you sure you want to send the weekly draft email?" -%>
 	<% end %>
 	<p>
