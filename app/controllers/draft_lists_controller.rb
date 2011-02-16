@@ -2,6 +2,7 @@ class DraftListsController < ApplicationController
   # GET /draft_lists
   # GET /draft_lists.xml
   def index
+    @load_javascript = true
     @draft_lists = DraftList.find_all_by_year_and_user_id(Time.now.year, current_user.id)
 
     respond_to do |format|
