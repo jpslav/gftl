@@ -15,8 +15,6 @@ Gftl2::Application.routes.draw do
   resources :league_memberships
   resources :owners
   resources :leagues
- # resources :users
- # resource :session
   resources :rules
   
   match 'league_memberships/play/:id' => 'league_memberships#play', :as => 'play_membership'
@@ -30,7 +28,6 @@ Gftl2::Application.routes.draw do
   match "race_results/pick_cars/:id" => "race_results#pick_cars"
   match "race_results/import_results_cars/:id" => "race_results#import_results"
   match "race_results/add_cars" => "race_results#add_cars"
-  #match "race_results/add_cars" => "race_results#add_cars"
   get "race_results/destroy_by_race"
   get "race_results/set_race_result_points_delta"  
   
@@ -52,16 +49,6 @@ Gftl2::Application.routes.draw do
   resources :preseason_rankings do
     post :sort, :on => :collection
   end
-  
-#  get "draft_lists/show_hover_drivers"
-  
-  # Following lines added for authentication per 
-  # http://avnetlabs.com/rails/restful-authentication-with-rails-2
- # match 'activate/:activation_code' => 'users#activate', :as => 'activate'
-  
- # match 'signup' => 'users#new', :as => 'signup'
-#  match 'login' => 'sessions#new', :as => 'login'
-#  match 'logout' => 'sessions#destroy', :as => 'logout'
   
   root :to => "home#index"
   
