@@ -1,6 +1,7 @@
 class LeagueMembership < ActiveRecord::Base
   
-  validates_presence_of :league_id, :owner_id, :active_draft_list_id
+  validates_presence_of :league_id, :owner_id, :active_draft_list_id, :franchise_car_id, :darkhorse_car_id
+
   
   validates_uniqueness_of :owner_id, 
                           :scope => :league_id, 
@@ -11,10 +12,13 @@ class LeagueMembership < ActiveRecord::Base
   belongs_to :draft_list, :class_name => "DraftList", :foreign_key => "active_draft_list_id"
   has_one :owned_stable
   has_many :race_stables
+
+  belongs_to :franchise_car, :class_name => "Car", :foreign_key => "franchise_car_id"
+  belongs_to :darkhorse_car, :class_name => "Car", :foreign_key => "darkhorse_car_id"
   
   # TODO clean up how we do times!!
   
-  @@day_before_allstar_race = Time.local(Time.now.year,5,11)
+  @@day_before_allstar_race = Time.local(Time.now.year,5,20)
   @@day_before_start_of_chase = Time.local(Time.now.year,9,17)
   
   @@first_half_bounds = [Time.local(Time.now.year,1,1), @@day_before_allstar_race]

@@ -1,21 +1,11 @@
 module LeagueMembershipsHelper
   
-  def getDarkhorseCar(lm)
-    !lm.owned_stable.nil? ? lm.owned_stable.darkhorse_car : nil
-  end
-  
-  def getFranchiseCar(lm)
-    !lm.owned_stable.nil? ? lm.owned_stable.franchise_car : nil
-  end
-  
   def getFranchiseCarString(lm, withDrivers=false) 
-    franchise = getFranchiseCar(lm)
-    getCarString(franchise, withDrivers)
+    getCarString(lm.franchise_car, withDrivers)
   end
   
   def getDarkhorseCarString(lm, withDrivers=false)  
-    darkhorse = getDarkhorseCar(lm)
-    getCarString(darkhorse, withDrivers)   
+    getCarString(lm.darkhorse_car, withDrivers)   
   end
   
   def getCarString(car, withDrivers) 
@@ -28,11 +18,13 @@ module LeagueMembershipsHelper
         result = result + " (" + car.normal_drivers + ")"
       end
     end
+    
+    result
   end
   
-  def getDarkhorseSelectOptions(lm)
-     darkhorseCandidates = Car.darkhorseCandidates(lm.league.year)
-     currentDarkhorse = getDarkhorseCar(lm)
+  def getDarkhorseSelectOptions(year,lm=nil)
+     darkhorseCandidates = Car.darkhorseCandidates(year)
+     currentDarkhorse = lm.nil? ? nil : lm.darkhorse_car
      
      if (!currentDarkhorse.nil? && !darkhorseCandidates.include?(currentDarkhorse))
        darkhorseCandidates.insert(0,currentDarkhorse)

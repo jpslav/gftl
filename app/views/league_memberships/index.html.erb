@@ -6,7 +6,7 @@ You aren't a member of any league yet.  <%= link_to 'Join one now!', new_league_
 
 <% else %>
 
-<table id="list">
+<table id="list" width="100%">
   <tr>
     <th width="20%">League</th>
     <th></th>
@@ -35,7 +35,7 @@ You aren't a member of any league yet.  <%= link_to 'Join one now!', new_league_
 		   <% if my_owner %>
 		      <%= form_tag({:action => "select_darkhorse"}) do %>
    			<%= select_tag 'chosen_darkhorse', 
-   			   getDarkhorseSelectOptions(@current_membership)
+   			   getDarkhorseSelectOptions(Time.now.year, @current_membership)
    			-%>
    			<%= hidden_field_tag 'membership_id', @current_membership.id %>
    			<%= submit_tag 'Save' -%>

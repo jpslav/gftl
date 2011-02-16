@@ -1,5 +1,6 @@
 <div id="pageHeading">Join a League</div>
 
+Note that the franchise and darkhorse cars you select may be changed by the league administrator to stay consistent with choices made by all members.
 	
 	<%= form_for(@league_membership) do |f| %>
 	  <%= render "shared/error_messages", :target => @league_membership %> 
@@ -31,6 +32,25 @@
 					</td>
 					<td>
 						<%= f.collection_select(:active_draft_list_id, DraftList.find_all_by_user_id(current_user.id), :id, :name)%>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<label>Franchise Car:</label>
+					</td>
+					<td>
+					   <%= f.collection_select(:franchise_car_id, Car.find_all_by_year(Time.now.year), :id, :numberAndDriver)%>
+					
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<label>Darkhorse Car:</label>
+					</td>
+					<td>
+					   
+					   	<%= f.collection_select(:darkhorse_car_id, Car.darkhorseCandidates(Time.now.year), :id, :numberAndDriver)%>
+					   
 					</td>
 				</tr>
 				<tr>

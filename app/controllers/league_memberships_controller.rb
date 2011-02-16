@@ -135,8 +135,8 @@ class LeagueMembershipsController < ApplicationController
     logger.info(params.inspect)
     
     membership = LeagueMembership.find_by_id(params[:membership_id])
-    membership.owned_stable.darkhorse_car_id = params[:chosen_darkhorse]
-    membership.owned_stable.save!
+    membership.darkhorse_car_id = params[:chosen_darkhorse]
+    membership.save!
     
     redirect_to(league_memberships_url)    
   end

@@ -1,13 +1,13 @@
 class OwnedStable < ActiveRecord::Base
 
-  validates_uniqueness_of :league_membership_id
-  validates_presence_of :franchise_car_id, :darkhorse_car_id, :league_membership_id
-  # validate :cars_not_same
-  # validate :cars_unique_to_league
-
-  belongs_to :franchise_car, :class_name => "Car", :foreign_key => "franchise_car_id"
-  belongs_to :darkhorse_car, :class_name => "Car", :foreign_key => "darkhorse_car_id"
-  belongs_to :league_membership
+  # validates_uniqueness_of :league_membership_id
+  # validates_presence_of :franchise_car_id, :darkhorse_car_id, :league_membership_id
+  # # validate :cars_not_same
+  # # validate :cars_unique_to_league
+  # 
+  # belongs_to :franchise_car, :class_name => "Car", :foreign_key => "franchise_car_id"
+  # belongs_to :darkhorse_car, :class_name => "Car", :foreign_key => "darkhorse_car_id"
+  # belongs_to :league_membership
 
   # For the time being we're not validating here, but instead just giving valid
   # options to the users.
