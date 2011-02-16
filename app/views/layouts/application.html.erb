@@ -96,72 +96,64 @@
                         <%= link_to "Home", root_path%>
                     </li>
                     <li class="yuimenubaritem">
-                        <%= link_to "Rules", :controller => 'rules', :action => 'index'%>
+                        <%= link_to "Rules", rules_path %>
                     </li>
                     <li class="yuimenubaritem">League
                         <div id="league" class="yuimenu">
                             <div class="bd">
                                 <ul>
 									<li class="yuimenuitem">
-				                        <%= link_to "League Memberships", 
-										    :controller => 'league_memberships', 
-											:action => 'index' %>
+				                        <%= link_to "League Memberships", league_memberships_path %>
 				                    </li>
                                     <li class="yuimenuitem">
-                                        <%= link_to 'Active League Details', 
-											:controller => 'league_details', 
-											:action => 'index'%>
+                                        <%= link_to 'Active League Details', league_details_path %>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </li> 
 			        <li class="yuimenubaritem">
-			            <%= link_to "Owner's Box", :controller => 'owners', :action => "index"%>
+			            <%= link_to "Owner's Box", owners_path %>
 			        </li>
 			        <li class="yuimenubaritem">
-			            <%= link_to "Draft Lists", :controller => 'draft_lists', :action => "index" %>
+			            <%= link_to "Draft Lists", draft_lists_path %>
 			        </li>
                     <li class="yuimenubaritem">
 						<%= link_to "Account", edit_user_registration_path %>
                     </li>
-                    
+               <!-->     
                     <li class="yuimenubaritem">
                         <%= link_to "Messages", root_path %>
                     </li>
-                    
+                   --> 
                     <% if (!current_user.nil? && current_user.is_administrator)%>
                     <li class="yuimenubaritem">Admin
                         <div id="admin" class="yuimenu">
                             <div class="bd">
                                 <ul>
 									<li class="yuimenuitem">
-				                        <%= link_to "Leagues", :controller => 'leagues', :action => 'index' %>
+				                        <%= link_to "Leagues", leagues_path %>
 				                    </li>
                                     <li class="yuimenuitem">
-                                        <%= link_to 'Race Results', 
-											:controller => 'race_results', :action => 'index'%>
+                                        <%= link_to 'Race Results', race_results_path %>
                                     </li>
                                     <li class="yuimenuitem">
-                                        <%= link_to 'Cars', :controller => 'cars', :action => 'index'%>
+                                        <%= link_to 'Cars', cars_path %>
                                     </li>
                                     <li class="yuimenuitem">
-                                        <%= link_to 'Races', :controller => 'races', :action => 'index'%>
+                                        <%= link_to 'Races', races_path %>
                                     </li>
                                     <li class="yuimenuitem">
-                                        <%= link_to 'Tracks', :controller => 'tracks', :action => 'index'%>
+                                        <%= link_to 'Tracks', tracks_path %>
                                     </li>
                                     <li class="yuimenuitem">
-                                        <%= link_to 'Preseason Rankings', 
-											:controller => 'preseason_rankings', :action => 'index'%>
+                                        <%= link_to 'Preseason Rankings', preseason_rankings_path %>
                                     </li>
                                     <li class="yuimenuitem">
-                                        <%= link_to 'Owned Stables', 
-											:controller => 'owned_stables', :action => 'index'%>
+                                        <%= link_to 'Owned Stables',	owned_stables_path %>
                                     </li>
                                     <li class="yuimenuitem">
-                                        <%= link_to 'Race Stables', 
-											:controller => 'race_stables', :action => 'index'%>
+                                        <%= link_to 'Race Stables', race_stables_path %>
                                     </li>
                                 </ul>
                             </div>
@@ -171,7 +163,7 @@
 
                     <% end %>
 					<li class="yuimenubaritem help-right">
-						<%= link_to "Infield Care Center (Help)", :controller => 'help', :action => 'index'%>
+						<%= link_to "Infield Care Center (Help)", help_index_path %>
 					</li>
                 </ul>
             </div>        

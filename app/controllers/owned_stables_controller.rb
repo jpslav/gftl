@@ -13,17 +13,6 @@ class OwnedStablesController < ApplicationController
     end
   end
 
-  # GET /owned_stables/1
-  # GET /owned_stables/1.xml
-#  def show
-#    @owned_stable = OwnedStable.find(params[:id])#
-#
-#    respond_to do |format|
-#      format.html # show.html.erb
-#      format.xml  { render :xml => @owned_stable }
-#    end
-#  end
-
   # GET /owned_stables/new
   # GET /owned_stables/new.xml
   def new
