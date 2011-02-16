@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110215003946) do
+ActiveRecord::Schema.define(:version => 20110216012422) do
 
   create_table "cars", :force => true do |t|
     t.string   "number"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(:version => 20110215003946) do
   create_table "preseason_rankings", :force => true do |t|
     t.integer  "car_id"
     t.integer  "year"
-    t.integer  "ranking"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

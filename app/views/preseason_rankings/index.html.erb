@@ -1,14 +1,107 @@
 <div id="pageHeading">Preseason Rankings</div>
 
+<% num_preferences = @rankings.size %>
+<% preferences_per_column = 10 %>
+<% num_columns = (num_preferences.to_f / preferences_per_column).ceil %>
+<% column_spacing = 7 %>
+<% line_height = 1.3 %>
 
 
-<div id="draftListEditLeft">
+
+<style>
+
+#preferences ol {
+  list-style: none;
+  margin: 0;
+  padding: 10;
+  float: left;
+  width: <%= column_spacing*6 %>em;
+}
+ 
+#preferences li {
+  padding: 0;
+  margin-right: 3em;
+  width: <%= column_spacing-3 %>em;
+  float: left;
+  line-height: <%= line_height %>em;
+}
+
+.handle:hover{cursor: move;}
+ 
+<% 1.upto(num_columns) do |colnum| %>
+.col<%= colnum %> {margin-left: <%= 3 + column_spacing*(colnum-1) %>em;}
+<% end %>
+ 
+.coltopper {margin-top: -<%= preferences_per_column * line_height %>em;}
+</style>
+
+<ol id="preferences">
+	<% count = 0 %>
+	<% @rankings.each do |p| %>
+	    <% class_tag = "" %>
+	    <% class_tag = "col#{(count/preferences_per_column).ceil+1}" %> 
+	    <% class_tag = class_tag + " coltopper" if 0 != count && count % preferences_per_column == 0%>
+		<% domid = "pref_#{p.id}"%>
+	
+      
+      <li id="<%= domid %>" num="<%= p.id %>"><span class="handle"><%= p.car.number %></span></li>
+      
+     
+		<% count = count+1 %>
+	<% end %>
+	<!-- write out br's for remaining empty rows to make ol height big enough -->
+	<% next_row = count % preferences_per_column %>
+	<% if 0 != next_row %>
+		<% next_row.upto(preferences_per_column) do |r| %>
+		<!--	<br/> -->
+		<% end %>
+	<% end %>
+	
+</ol>
+
+
+<% content_for :javascript do %>
+<%= javascript_tag do %>
+
+$(document).ready(function(){
+   
+   // Sorting the list
+   $('#preferences').sortable({
+      axis: 'y',
+      dropOnEmpty: false,
+      handle: '.handle',
+      cursor: 'crosshair',
+      items: 'li',
+      opacity: 0.4,
+      scroll: true,
+      update: function(){
+         $.ajax({
+            type: 'post',
+            data: $('#preferences').sortable('serialize'),
+            dataType: 'script',
+            complete: function(request){
+               $('#preferences').effect('highlight');
+            },
+            url: '/preseason_rankings/sort'
+         });
+      }
+   });
+   
+});
+
+<% end %>
+<% end %>
+
+
+<!--><div id="draftListEditLeft">
 	Order the cars below in their preseason ranking order.<p>
      <div id="rankingsList">
+     <% if false %>
      <%= render :partial => "ranking_list" %>
+     <% end %>
      </div>
 </div>
 
 
 
-<br />
+<br /> -->
