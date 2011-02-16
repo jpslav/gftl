@@ -31,10 +31,10 @@
 	<%= stylesheet_link_tag "gftl", :media => "all"%>
 
 
-	<%= javascript_include_tag :defaults %>
-	
-	<%= javascript_include_tag :on_the_spot %>
-   
+   <% if @load_javascript %>
+   	<%= javascript_include_tag :defaults %>
+   	<%= javascript_include_tag :on_the_spot %>
+   <% end %>
 	
 	<!-- Initialize and render the menu bar --> 
 	

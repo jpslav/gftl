@@ -9,6 +9,7 @@ class RaceResultsController < ApplicationController
   # GET /race_results
   # GET /race_results.xml
   def index
+    @load_javascript = true
     @race_results = RaceResult.all
 
     respond_to do |format|

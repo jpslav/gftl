@@ -5,6 +5,7 @@ class PreseasonRankingsController < ApplicationController
   # GET /preseason_rankings
   # GET /preseason_rankings.xml
   def index
+    @load_javascript = true
     @rankings = PreseasonRanking.find_all_by_year(Time.now.year, :order => "position")
 
     respond_to do |format|

@@ -23,6 +23,7 @@ class DraftListsController < ApplicationController
 
   # GET /draft_lists/1/edit
   def edit
+    @load_javascript = true
     @draft_list = DraftList.find(params[:id])
     @selected_preference_id = @draft_list.ranked_preferences.first.id
   end
