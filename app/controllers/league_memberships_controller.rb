@@ -3,6 +3,8 @@ class LeagueMembershipsController < ApplicationController
   # GET /league_memberships.xml
   
   def index
+    @load_javascript = true
+    
     current_user_memberships = 
       LeagueMembership.find_all_by_owner_id(current_user.owners.collect {|o| o.id}).to_a
     
