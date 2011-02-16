@@ -1,27 +1,25 @@
 <div id="pageHeading">Edit Owned Stable</div>
 
-<% @memberships = LeagueMembership.all.select{|m| m.league.year == Time.now.year} %>
-<% @cars = Car.find_all_by_year(Time.now.year)%>
+<% %>
 
 <%= form_for(@owned_stable) do |f| %>
   <%= render "shared/error_messages", :target => @owned_stable %> 
 
   <p>
-    <%= f.label :league_membership_id %><br />
-    <%= f.collection_select(:league_membership_id, @memberships, :id, :toString)%>
+  Editing the owned stable for membership: <%= @owned_stable.league_membership.toString %>
+  </p>
+  
+  <p>
+    <%= f.label :franchise_car_id %><br />
+    <%= f.collection_select(:franchise_car_id, @cars, :id, :numberAndDriver)%>    
   </p>
   <p>
-    <%= f.label :car1_id %><br />
-    <%= f.collection_select(:car1_id, @cars, :id, :numberAndDriver)%>    
-  </p>
-  <p>
-    <%= f.label :car2_id %><br />
-    <%= f.collection_select(:car2_id, @cars, :id, :numberAndDriver)%>    
+    <%= f.label :darkhorse_car_id %><br />
+    <%= f.collection_select(:darkhorse_car_id, @cars, :id, :numberAndDriver)%>    
   </p>
   <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @owned_stable %> |
 <%= link_to 'Back', owned_stables_path %>

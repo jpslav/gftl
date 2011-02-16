@@ -47,7 +47,8 @@ class Car < ActiveRecord::Base
   end
   
   def validDarkhorse?
-    !PreseasonRanking.top12(self.year).include?(self) && 
-    (!RaceResult.anyForYear(self.year) || !Car.top_10.include?(self))
+    !PreseasonRanking.top12(self.year).collect{|c| c.number}.include?(self.number) &&
+    (!RaceResult.anyForYear(self.year) || 
+     !Car.top_10.collect{|c| c.number}.include?(self.number))
   end
 end

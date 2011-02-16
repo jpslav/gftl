@@ -38,6 +38,7 @@ class OwnedStablesController < ApplicationController
   # GET /owned_stables/1/edit
   def edit
     @owned_stable = OwnedStable.find(params[:id])
+    @cars = Car.find_all_by_year(Time.now.year)
   end
 
   # POST /owned_stables

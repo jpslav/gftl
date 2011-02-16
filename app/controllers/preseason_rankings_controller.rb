@@ -14,11 +14,11 @@ class PreseasonRankingsController < ApplicationController
   end
 
   def sort
-    sorted_preference_ids = params['pref']
+    sorted_ranking_ids = params['rank']
     
      PreseasonRanking.transaction do
         nextPosition = 0
-        sorted_preference_ids.each do |oid|
+        sorted_ranking_ids.each do |oid|
           ranking = PreseasonRanking.find(oid)
           ranking.position = nextPosition
           ranking.save!
