@@ -3,7 +3,6 @@ Gftl2::Application.routes.draw do
   devise_for :users
 
   resources :race_stables
-  resources :owned_stables
   resources :preseason_rankings
   resources :race_pairings
   resources :race_results
@@ -21,7 +20,6 @@ Gftl2::Application.routes.draw do
   match 'league_details/' => 'league_details#index', :as => 'league_details'
 
   match "leagues/email_standings"
-#  get "leagues/email_standings"
   get "race_stables/run_weekly_draft"
   get "race_stables/email_weekly_draft_results"
 
