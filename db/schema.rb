@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110216224143) do
+ActiveRecord::Schema.define(:version => 20110217024535) do
 
   create_table "cars", :force => true do |t|
     t.string   "number"
@@ -41,12 +41,13 @@ ActiveRecord::Schema.define(:version => 20110216224143) do
   create_table "league_memberships", :force => true do |t|
     t.integer  "league_id"
     t.integer  "owner_id"
-    t.boolean  "is_administrator",     :default => false
+    t.boolean  "is_administrator",       :default => false
     t.integer  "active_draft_list_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "franchise_car_id"
     t.integer  "darkhorse_car_id"
+    t.integer  "initial_draft_position"
   end
 
   create_table "leagues", :force => true do |t|

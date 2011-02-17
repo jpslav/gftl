@@ -1,5 +1,7 @@
 <div id="pageHeading">Editing league</div id="pageHeading">
 
+<% allCars = Car.find_all_by_year(Time.now.year) %>
+
 <%= form_for(@league) do |f| %>
   <%= render "shared/error_messages", :target => @league %> 
 
@@ -23,9 +25,58 @@
     <%= f.label "Registration is open:" %><br />
     <%= f.check_box :is_registration_open %>
   </p>
+  
+  <table id="list" width="100%">
+     <tr>
+        <th width="40%">Member</th>
+        <th width="20%">Franchise</th>
+        <th width="20%">Darkhorse</th>
+        <th width="20%">Initial Draft Order</th>
+     </tr>
+     <% @league.league_memberships.each do |lm| %>
+        <% f.fields_for :league_memberships, lm do |builder| %>
+           <tr>
+              <td><%= lm.owner.name %></td>
+              <td><%= builder.collection_select(:franchise_car_id, allCars, :id, :numberAndDriver)%></td>
+              <td><%= builder.collection_select(:darkhorse_car_id, allCars, :id, :numberAndDriver)%></td>
+              <td><%= builder.text_field :initial_draft_position, :size => 3 %></td>
+           </tr>
+        <% end %>
+     <% end %>
+  </table>
   <p>
     <%= f.submit 'Update' %>
   </p>
+<% end %>
+
+
+
+<% if false %>
+<!-- <%= form_for(memberships) do |f| %>
+   <table id="list" width="100%">
+     <tr>
+       <th width="30%">Member</th>
+       <th width="20%">Franchise</th>
+       <th width="20%">Darkhorse</th>
+       <th width="20%">Init Draft Position</th>
+       <th colspan="3"></th>
+     </tr>
+     <% memberships%>
+     <% rowtype = "evenrow"%>
+     <tr class="<%= rowtype %>">
+       <td><%= link_to membership.owner.name, owner_path(membership.owner) %></td>
+       <td><%= f.collection_select(:franchise_car_id, allCars, :id, :numberAndDriver)%></td>
+       <td><%= f.collection_select(:darkhorse_car_id, allCars, :id, :numberAndDriver)%></td>
+       <td></td>
+       <td><%= link_to trash_icon, membership, 
+               :confirm => 'Are you sure you want to remove ' + membership.owner.name + ' from ' + membership.league.name + "?", 
+               :method => :delete %>
+       </td>
+     </tr>
+     <% rowtype = "oddrow" == rowtype ? "evenrow" : "oddrow" %>
+   </table>
+<% end %> -->
+
 <% end %>
 
 <%= link_to 'Show', @league %> |

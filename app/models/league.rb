@@ -6,6 +6,9 @@ class League < ActiveRecord::Base
   
   has_many :league_memberships
   
+  # http://media.railscasts.com/videos/196_nested_model_form_part_1.mov
+  accepts_nested_attributes_for :league_memberships
+  
   protected
   def validate
     errors.add(:year, "The year should be after 2009.") if year < 2010
