@@ -1,4 +1,8 @@
 class LeagueMembershipsController < ApplicationController
+  
+  before_filter :admin_required, :only => [:edit, :update]
+  
+  
   # GET /league_memberships
   # GET /league_memberships.xml
   
@@ -87,7 +91,7 @@ class LeagueMembershipsController < ApplicationController
     respond_to do |format|
       if @league_membership.update_attributes(params[:league_membership])
         flash[:notice] = 'LeagueMembership was successfully updated.'
-        format.html { redirect_to(@league_membership) }
+        format.html { redirect_to(league_memberships_path) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
