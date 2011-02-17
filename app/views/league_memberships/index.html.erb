@@ -57,8 +57,14 @@ You aren't a member of any league yet.  <%= link_to 'Join one now!', new_league_
 			   <% end %>
 			<% end %>
 		</td>
-		<td>&nbsp;&nbsp;&nbsp;</td>
 		<td><%= link_to "Play!", play_membership_path(membership.id)  if my_owner %></td>
+		<td>
+		   <% if current_user.is_administrator %>
+		      <%= link_to edit_icon, edit_league_membership_path(membership) %>
+		   <% else %>
+		      &nbsp;&nbsp;&nbsp;
+		   <% end %>
+		</td>
 		<td><%= link_to trash_icon, membership, 
 				:confirm => 'Are you sure you want to remove ' + membership.owner.name + ' from ' + membership.league.name + "?", 
 				:method => :delete if current_user.is_administrator %></td>

@@ -1,0 +1,72 @@
+<div id="pageHeading">Edit a membership</div>
+
+<p>Note: this page is only accessible to league admins.  Don't abuse this power!</p>
+	
+	<% allCars = Car.find_all_by_year(Time.now.year) %>
+	
+	<%= form_for(@league_membership) do |f| %>
+	  <%= render "shared/error_messages", :target => @league_membership %> 
+		<fieldset>
+			
+		
+
+			   
+			<table cellpadding="5px" border="0">
+			   <!-->
+				<tr>
+					<td>
+					<label>League:</label>
+					</td>
+					<td>
+						<%= f.collection_select(:league_id, League.find_open, :id, :name)%>
+					</td>
+				</tr>
+				-->
+				<tr>
+					<td>
+						<label>Member as:</label>
+					</td>
+					<td>
+					   <%= @league_membership.owner.name %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<label>Draft List (this can be changed later):</label>
+					</td>
+					<td>
+						<%= f.collection_select(:active_draft_list_id, DraftList.find_all_by_user_id(@league_membership.owner.user.id), :id, :name)%>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<label>Franchise Car:</label>
+					</td>
+					<td>
+					   <%= f.collection_select(:franchise_car_id, allCars, :id, :numberAndDriver)%>
+					
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<label>Darkhorse Car:</label>
+					</td>
+					<td>
+					   
+					   	<%= f.collection_select(:darkhorse_car_id, allCars, :id, :numberAndDriver)%>
+					   
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td> <%= f.submit 'Update' %></td>
+				</tr>
+			</table>
+
+		</fieldset>
+		<p>
+			<% end %>
+
+
+
+<%= link_to 'Back', league_memberships_path %>
