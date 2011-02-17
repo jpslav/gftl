@@ -57,7 +57,6 @@
    
 	<div id="body" class="shadow">
 	  <div style="outline-style:solid; 	outline-color:#fff;"> 
-	 <!-->   <div style="outline-style:solid; outline-width:1px;	outline-color:#fbb520;"> -->
 
 		<div id="banner">
 			<span class="floatRight">
@@ -71,22 +70,21 @@
 				    [ <%= link_to "Log in", new_user_session_path %> ]
 				    <% end %></td>
 					</tr>
-					<!--
+					
 					<tr id="loginStatus">
-						
 						<td>
 						<% if user_signed_in? %>
 						<% membership = current_user.current_league_membership %>
 						  <% if !membership.nil? %>
-						    You're playing as '<%= membership.owner.name %>' in '<%= membership.league.name %>' [ <%= link_to "Change", league_memberships_path %> ]
+						    You're playing as '<%= membership.owner.name %>' in '<%= membership.league.name %>' &nbsp;&nbsp;&nbsp; [ <%= link_to "Change", league_memberships_path %> ]
 						  <% end %>
 						<% end %>
 						</td>
-						</tr> -->
+						</tr> 
 				</table>
 			
 			</span>
-		<!-->	<img src="/images/gftl_banner2.gif"/> -->
+		
 		</div>
 		
         <!-- Navigation menu bar -->
@@ -124,11 +122,7 @@
                     <li class="yuimenubaritem">
 						<%= link_to "Account", edit_user_registration_path %>
                     </li>
-               <!-->     
-                    <li class="yuimenubaritem">
-                        <%= link_to "Messages", root_path %>
-                    </li>
-                   --> 
+           
                     <% if (!current_user.nil? && current_user.is_administrator)%>
                     <li class="yuimenubaritem">Admin
                         <div id="admin" class="yuimenu">

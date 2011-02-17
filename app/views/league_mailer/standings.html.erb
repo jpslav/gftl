@@ -13,7 +13,7 @@ The updated standings and draft pool for the next race (<%= Race.nextRace.name %
 
 <br clear="all"/><br clear="all"/>
 
-The next draft will be run on Wednesday night, so make sure to make your <a href="http://gftl.jpslavinsky.com/league_memberships">draft list selections</a> before then.
+The next draft will be run on Wednesday night, so make sure to make your <a href="http://gftl.jpslav.com/league_memberships">draft list selections</a> before then.
 
 <div style="<%= sectionHeadingStyle %>">Standings</div>
 
@@ -37,7 +37,7 @@ Here are the standings for our current "mini-chase" (each season is divided into
 	<td style="<%= cellStyle %>"><%= rank = rank + 1 %>.</td>
     <td align="left" style="<%= cellStyle %>"><%= member.owner.name %></td>
     <td align="center" style="<%= cellStyle %>"><%= member.current_mini_chase_points %></td>
-    <td align="center" style="<%= cellStyle %>"><%= stable.points %></td>
+    <td align="center" style="<%= cellStyle %>"><%= stable.points if !stable.nil? %></td>
   </tr>
   <% end %>
 </table>
