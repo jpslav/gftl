@@ -40,14 +40,18 @@ class Car < ActiveRecord::Base
     cars[0..numCars-1]
   end
   
-  def self.darkhorseCandidates(year)
+  def self.darkhorseCandidates(year,league=nil)
     candidates = Car.find_all_by_year(Time.now.year)
     candidates.sort{|a,b| a.number.to_i <=> b.number.to_i}
-    candidates.delete_if {|c| !c.validDarkhorse?}
+    candidates.delete_if {|c| !c.validDarkhorse?(league)}
   end
   
-  def validDarkhorse?
+  def validDarkhorse?(league=nil)
     !PreseasonRanking.top12(self.year).collect{|c| c.number}.include?(self.number) &&
+    
+    (league.nil? || 
+     !league.franchiseCars.collect{|c| c.number}.include?(self.number)) &&
+     
     (!RaceResult.anyForYear(self.year) || 
      !Car.top_10.collect{|c| c.number}.include?(self.number))
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110217024535) do
+ActiveRecord::Schema.define(:version => 20110219181017) do
 
   create_table "cars", :force => true do |t|
     t.string   "number"
@@ -99,7 +99,6 @@ ActiveRecord::Schema.define(:version => 20110217024535) do
     t.integer  "car2_id"
     t.integer  "car3_id"
     t.integer  "car4_id"
-    t.integer  "car5_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

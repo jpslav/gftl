@@ -72,42 +72,44 @@ class League < ActiveRecord::Base
 
     logger.info("Starting weekly draft for " + draft_race.name)
     
-    # Determine the pool of cars who have automatically qualfied for the next race
-    # (this is the top 35 in points from after the previous race)
+    firstRaceNotYetRun = Race.firstRaceNotYetRun(Time.now.year)
     
-    qualifiers = Car.top_35
+    # Determine the pool of cars who have automatically qualfied for the next
+    # race (this is the top 35 in points from after the previous race).  For 
+    # the first race of the year, use the top 35 from the preseason rankings
+    
+    qualifiers = firstRaceNotYetRun ?  
+                 PreseasonRanking.top(35,Time.now.year) :
+                 Car.top_35
     
     logger.debug("Initial race qualifiers: " + qualifiers.collect{|q| q.number}.join(", "))
     
-    # Initialize a new race stable for each member.  Put each members's fixed 
-    # cars into their stables, and remove those cars from the available pool.
+    # Initialize a new race stable for each member.  Put each members's 
+    # franchise and darkhorse cars into their stables, and remove the franchise
+    # cars from the available pool.
     
     stables = {}
     
     league_memberships.each do |m|
       stables[m.id] = RaceStable.new(:league_membership_id => m.id, 
                                      :race_id => draft_race.id,
-                                     :car1_id => m.owned_stable.car1_id,
-                                     :car2_id => m.owned_stable.car2_id)
+                                     :car1_id => m.franchise_car_id,
+                                     :car2_id => m.darkhorse_car_id)
     
-      qualifiers.reject!{|q| q.id == m.owned_stable.car1_id || 
-                             q.id == m.owned_stable.car2_id}
+      qualifiers.reject!{|q| q.id == m.franchise_car_id}
     end
     
     logger.debug("After assigning fixed stables...")
     logger.debug("Stables:")
     logger.debug(stables.values.collect{|s| "  " + s.league_membership.owner.user.first_name + ": " + s.car1.number + ", " + s.car2.number}.join("\n"))
-    #logger.debug(stables.values.collect{|s| "  " + s.league_membership.owner.user.first_name + ": " + s.car1.number}.join("\n"))
     logger.debug("Num qualifiers = " + qualifiers.count.to_s)
     logger.debug("Qualifiers: " + qualifiers.collect{|q| q.number}.join(", "))
     
-    # Iterate through the four rounds of drafts.  In each round, iterate
+    # Iterate through the two rounds of drafts.  In each round, iterate
     # through the owners in the following order:
     #
-    #   Round 1:   lowest pts owner ... highest pts owner (if used)
+    #   Round 1:   lowest pts onwer ... highest pts owner
     #   Round 2:   Random order
-    #   Round 2:   lowest pts onwer ... highest pts owner
-    #   Round 3:   highest pts owner ... lowest pts owner
     #
     # For each owner, iterate through their draft list looking for the
     # earliest entry (highest preference) in the list that is still in
@@ -118,12 +120,12 @@ class League < ActiveRecord::Base
     # appropriate points for this point in the season  
     
     members_worst_to_best = 
+      firstRaceNotYetRun ?
+      league_memberships.sort{|a,b| a.initial_draft_order <=> b.initial_draft_order} :
       league_memberships.sort{|a,b| a.current_mini_chase_points <=> b.current_mini_chase_points}
 
-    draft_order_by_round = [#members_worst_to_best, 
-                            league_memberships.sort_by{rand},
-                            members_worst_to_best, 
-                            members_worst_to_best.reverse]
+    draft_order_by_round = [members_worst_to_best, 
+                            league_memberships.sort_by{rand}]
 
     draft_lists = {}
     league_memberships.each{|m| draft_lists[m.id]=m.draft_list.ranked_cars}
@@ -152,6 +154,10 @@ class League < ActiveRecord::Base
   
   def raceStables
     league_memberships.collect{|m| m.race_stables}.flatten
+  end
+  
+  def franchiseCars
+    league_memberships.collect{|m| m.franchise_car}
   end
   
 end

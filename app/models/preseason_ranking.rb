@@ -32,12 +32,16 @@ class PreseasonRanking < ActiveRecord::Base
       #   end
 
   def self.top12(year)
+    top(12,year)
+  end
+
+  def self.top(number,year)
     ranked_cars = find_all_by_year(year)
     
     return [] if ranked_cars.nil?
 
     ranked_cars.sort! {|a,b| a.position <=> b.position}
-    ranked_cars[0..11].collect{|rc| rc.car }    
+    ranked_cars[0..number-1].collect{|rc| rc.car }
   end
 
   # private

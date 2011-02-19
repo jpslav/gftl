@@ -23,7 +23,8 @@ module LeagueMembershipsHelper
   end
   
   def getDarkhorseSelectOptions(year,lm=nil)
-     darkhorseCandidates = Car.darkhorseCandidates(year)
+     league = lm.nil? ? nil : lm.league
+     darkhorseCandidates = Car.darkhorseCandidates(year,league)
      currentDarkhorse = lm.nil? ? nil : lm.darkhorse_car
      
      if (!currentDarkhorse.nil? && !darkhorseCandidates.include?(currentDarkhorse))

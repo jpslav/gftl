@@ -5,7 +5,7 @@
 
   <p>
     <%= f.label :year %><br />
-    <%= f.text_field :year %>
+    <%= f.text_field :year, :value => Time.now.year %>
   </p>
   <p>
     <%= f.label :number %><br />

@@ -15,6 +15,13 @@ class LeagueMailer < ActionMailer::Base
          :subject => '[GFTL] Draft Results for ' + Race.nextRace.name)
   end
   
+  def broadcast_message(league, subject, message)
+    @message = message
+    
+    mail(:to => getRecipients(league),
+         :subject => '[GFTL] ' + subject)
+  end
+  
   def getRecipients(league)
     league.league_memberships.collect{|m| m.owner.user.email}
   end

@@ -56,7 +56,11 @@ class Race < ActiveRecord::Base
   end
   
   def self.firstRaceOfYear(year)
-    find_all_by_year(year).sort {|x,y| x.racetime <=> y.racetime }
+    find_all_by_year(year).sort {|x,y| x.racetime <=> y.racetime }.first
+  end
+  
+  def self.firstRaceNotYetRun(year)
+    Time.now < firstRaceOfYear(year).racetime
   end
   
 end
