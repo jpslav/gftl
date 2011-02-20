@@ -22,8 +22,8 @@ class LeagueMailer < ActionMailer::Base
          :subject => '[GFTL] ' + subject)
   end
   
-  def message(league_membership_sender, league_membership_receiver, subject, message)
-    @message = message
+  def message(league_membership_sender, league_membership_receiver, subject, body)
+    @body = body
     mail(:to => league_membership_receiver.owner.user.email,
          :from => league_membership_sender.owner.user.email,
          :subject => '[GFTL] ' + subject)

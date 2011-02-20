@@ -13,7 +13,13 @@ class Race < ActiveRecord::Base
   
   def self.racesUpThroughNextOne
     races = racesUpToToday
-    return races if races.empty?
+    
+    if races.empty?
+      firstRace = Race.first(:order => "racetime")
+      
+      return firstRace.nil? ? [] : [firstRace]
+    end
+    
     races.sort!{|x,y| x.racetime <=> y.racetime}
     nextRace = races.last.nextRace
     if !nextRace.nil?
