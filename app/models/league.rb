@@ -121,7 +121,7 @@ class League < ActiveRecord::Base
     
     members_worst_to_best = 
       firstRaceNotYetRun ?
-      league_memberships.sort{|a,b| a.initial_draft_order <=> b.initial_draft_order} :
+      league_memberships.sort{|a,b| a.initial_draft_position <=> b.initial_draft_position} :
       league_memberships.sort{|a,b| a.current_mini_chase_points <=> b.current_mini_chase_points}
 
     draft_order_by_round = [members_worst_to_best, 
