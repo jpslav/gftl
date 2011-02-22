@@ -1,5 +1,5 @@
 <% league = @active_membership.league %>
-<% members = league.league_memberships %>
+<% members = league.league_memberships.sort{|a,b| b.current_mini_chase_points <=> a.current_mini_chase_points} %>
 
 <div id="pageHeading">League Details: <%= league.name %></div>
 
