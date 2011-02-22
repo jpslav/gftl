@@ -56,8 +56,12 @@ class RaceResultsController < ApplicationController
         logger.info columns.inspect
         
         car_number = columns[car_number_index]
-        pts_match = /(\d+)\/(\d+)/.match(columns[pts_index])
-        pts = pts_match[1].to_i #+ pts_match[2].to_i  # the bonus pts are already included in [1]!
+        if columns[pts_index] == "0"
+          pts = 0
+        else
+          pts_match = /(\d+)\/(\d+)/.match(columns[pts_index])
+          pts = pts_match[1].to_i #+ pts_match[2].to_i  # the bonus pts are already included in [1]!
+        end
         logger.info "Car: " + car_number + " Pts: " + pts.to_s
         
         car = Car.find_by_number(car_number.strip)
