@@ -32,10 +32,6 @@
     <%= f.collection_select(:car4_id, @cars, :id, :numberAndDriver)%>    
   </p>
   <p>
-    <%= f.label :car4_id %><br />
-    <%= f.collection_select(:car5_id, @cars, :id, :numberAndDriver)%>    
-  </p>
-  <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>

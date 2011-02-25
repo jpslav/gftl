@@ -32,10 +32,6 @@
     <%= f.collection_select(:car4_id, @cars, :id, :numberAndDriver)%>    
   </p>
   <p>
-    Car #5<br />
-    <%= f.collection_select(:car5_id, @cars, :id, :numberAndDriver)%>    
-  </p>
-  <p>
     <%= f.submit 'Create' %>
   </p>
 <% end %>
