@@ -6,6 +6,23 @@
 <%= submit_tag 'Email Standings', :confirm => "Are you sure you want to email standings?" -%>
 <% end %>
 
+<p>
+   <hr/>
+<%= form_tag({:action => "email_everyone"}) do %>
+<table>
+   <tr>
+      <td>Subject</td>
+      <td><%= text_field_tag 'broadcast_subject', '', :size => 75 %></td>
+   </tr>
+   <tr>
+      <td>Body</td>
+      <td><%= text_area_tag 'broadcast_message', "Hey all,\n<p>Here's an important message\n<p>Let's go racing!", :rows => 4 %></td>
+   </tr>
+</table>
+
+<%= submit_tag 'Email Everyone', :confirm => "Are you sure you want to send this email to all GFTL users?" -%>
+<% end %>
+
 <div id="sectionHeading">Active Leagues</div>
 
 <table id="list">

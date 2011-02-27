@@ -20,6 +20,7 @@ Gftl2::Application.routes.draw do
   match 'league_details/' => 'league_details#index', :as => 'league_details'
 
   match "leagues/email_standings"
+  match "leagues/email_everyone"
   match "race_stables/run_weekly_draft"
   match "race_stables/email_weekly_draft_results"
 

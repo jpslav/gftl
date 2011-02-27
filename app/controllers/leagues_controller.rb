@@ -8,6 +8,7 @@ class LeaguesController < ApplicationController
   # GET /leagues.xml
   def index
     @leagues = League.all
+    @load_javascript = true
 
     respond_to do |format|
       format.html # index.html.erb
@@ -62,6 +63,12 @@ class LeaguesController < ApplicationController
   def email_standings
     League.all.each{|l| l.email_standings}
     flash[:notice] = "Standings email sent"
+    redirect_to leagues_path
+  end
+  
+  def email_everyone
+    League.all.each{|l| l.email(params[:broadcast_subject], params[:broadcast_message])}
+    flash[:notice] = "Broadcast message sent"
     redirect_to leagues_path
   end
   

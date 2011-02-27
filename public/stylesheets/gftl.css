@@ -499,3 +499,8 @@ clear: both;
 ol#preferences  {
    cursor: -moz-grab;
 }
+
+
+textarea#broadcast_message {
+	width: 100%;
+}

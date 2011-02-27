@@ -51,6 +51,10 @@ class League < ActiveRecord::Base
     LeagueMailer.race_draft_results(self).deliver if num_members > 0
   end
   
+  def email(subject, message)
+    LeagueMailer.broadcast_message(self, subject, message).deliver if num_members > 0
+  end
+  
   def last_race_winner
 
   end
