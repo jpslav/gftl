@@ -21,6 +21,8 @@ gem 'jquery-rails'
 gem "on_the_spot"
 gem "acts_as_list"
 
+gem 'tlsmail'
+
 group :development, :test do
 	gem 'sqlite3-ruby', :require => 'sqlite3'
 	gem 'ruby-debug'

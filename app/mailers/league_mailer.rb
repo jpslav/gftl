@@ -1,5 +1,4 @@
 class LeagueMailer < ActionMailer::Base
-  default :from => "no-reply@gftl.jpslav.com"
 
   def standings(league)
     @league = league
