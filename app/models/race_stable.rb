@@ -42,6 +42,7 @@ class RaceStable < ActiveRecord::Base
    
    def points
      results = RaceResult.find_all_by_race_id(race_id).to_a
-     points = results.sum {|result| (orderedCarIds.include?(result.car_id) ? result.points_delta : 0)}
+     #points = results.sum {|result| (orderedCarIds.include?(result.car_id) ? result.points_delta * orderedCarIds.count(result.car_id) : 0)}
+     points = results.sum {|result| result.points_delta * orderedCarIds.count(result.car_id)}
    end
 end
