@@ -56,8 +56,8 @@
 	 <td><%= stats.mini_chase_points[member.id]/stats.num_races %></td>
 	 <td><%=stats.mini_chase_points[member.id]/stats.num_races/4 %></td>
 	 <td <% if stats.id_with_highest_personal_best == member.id %>class="highlight_cell"<%end%>>
-	    <%= member.personal_best_week_points %></td>
-    <td <% if stats.id_with_lowest_personal_best == member.id %>class="highlight_cell"<%end%>><%= member.personal_worst_week_points %></td>
+	    <%= stats.personal_bests[member.id] %></td>
+    <td <% if stats.id_with_lowest_personal_best == member.id %>class="highlight_cell"<%end%>><%= stats.personal_worsts[member.id] %></td>
  	 <td><%= stats.park_and_stop_awards[member.id] %></td>
   </tr>
   <% end %>

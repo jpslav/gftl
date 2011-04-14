@@ -10,6 +10,8 @@ class LeagueStats
   attr_reader :id_with_highest_personal_best
   attr_reader :id_with_lowest_personal_best
   attr_reader :num_races
+  attr_reader :personal_worsts
+  attr_reader :personal_bests
 
   def initialize(league)
     members = league.league_memberships
