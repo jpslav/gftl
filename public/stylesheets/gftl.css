@@ -488,6 +488,10 @@ input.big {
     float: right;
 }
 
+.highlight_cell {
+	background-color: yellow;
+}
+
 #stepLeftTop {
 clear: both;
 }

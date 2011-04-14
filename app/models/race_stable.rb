@@ -45,4 +45,10 @@ class RaceStable < ActiveRecord::Base
      #points = results.sum {|result| (orderedCarIds.include?(result.car_id) ? result.points_delta * orderedCarIds.count(result.car_id) : 0)}
      points = results.sum {|result| result.points_delta * orderedCarIds.count(result.car_id)}
    end
+   
+   def worst_car_points
+     results = RaceResult.find_all_by_race_id(race_id).to_a
+     points = results.collect{|result| result.points_delta * orderedCarIds.count(result.car_id)}   
+     points.min  
+   end
 end

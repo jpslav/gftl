@@ -66,5 +66,17 @@ class LeagueMembership < ActiveRecord::Base
     
     points
   end
+  
+  def last_stable
+    RaceStable.find_by_league_membership_id_and_race_id(id, Race.lastRace.id)
+  end
+  
+  def personal_best_week_points
+    race_stables.collect{|s| s.points}.max
+  end
+  
+  def personal_worst_week_points
+    race_stables.collect{|s| s.points}.min
+  end
 
 end

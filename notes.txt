@@ -1,0 +1,12 @@
+How to copy production server database to dev machine (using yaml_db gem):
+----------
+On production server: 
+
+bundle exec rake RAILS_ENV=production db:data:dump
+
+On dev machine:
+
+Use SFTP to get db/data.yml from production machine into dev machine db directory
+
+rake db:drop
+rake db:load

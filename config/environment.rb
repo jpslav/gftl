@@ -4,6 +4,8 @@ require File.expand_path('../application', __FILE__)
 require 'tlsmail'    
 Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
 
+require 'ruby_extensions'
+
 ActionMailer::Base.default :from => "GFTL Bot <noreply@adeptivelabs.com>"
 ActionMailer::Base.default :sender => "GFTL Bot <noreply@adeptivelabs.com>"
 ActionMailer::Base.delivery_method = :smtp
