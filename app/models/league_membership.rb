@@ -76,7 +76,9 @@ class LeagueMembership < ActiveRecord::Base
   end
   
   def personal_worst_week_points
-    race_stables.collect{|s| s.points}.min
+    points = race_stables.collect{|s| s.points}
+    points.reject! {|p| p == 0 }
+    points.min
   end
 
 end
