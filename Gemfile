@@ -23,6 +23,8 @@ gem "acts_as_list"
 
 gem 'tlsmail'
 
+gem 'yaml_db'
+
 group :development, :test do
 	gem 'sqlite3-ruby', :require => 'sqlite3'
 	gem 'ruby-debug'
