@@ -10,7 +10,7 @@ class LeagueMembershipsController < ApplicationController
     @load_javascript = true
     
     current_user_memberships = 
-      LeagueMembership.find_all_by_owner_id(current_user.owners.collect {|o| o.id}).to_a
+      LeagueMembership.find_all_by_owner_id(current_user.owners.collect {|o| o.id}).to_a.sort{|a,b| a.created_at <=> b.created_at}
     
     current_user_league_ids = current_user_memberships.collect {|lm| lm.league_id}.uniq
      

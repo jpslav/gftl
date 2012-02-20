@@ -31,7 +31,8 @@ Note that the franchise and darkhorse cars you select may be changed by the leag
 					<label>Draft List (this can be changed later):</label>
 					</td>
 					<td>
-						<%= f.collection_select(:active_draft_list_id, DraftList.find_all_by_user_id(current_user.id), :id, :name)%>
+						<%= f.collection_select(:active_draft_list_id, DraftList.where(:user_id => current_user.id, :year => Time.now.year).all, :id, :name)%><br/>
+						<span style="font-size: 9px">No draft lists yet? <%= link_to "Make one", new_draft_list_path %></span>
 					</td>
 				</tr>
 				<tr>

@@ -6,6 +6,8 @@ You aren't a member of any league yet.  <%= link_to 'Join one now!', new_league_
 
 <% else %>
 
+<span style="float:right; padding:6px">	<%= link_to 'Join a new league', new_league_membership_path %></span>
+
 <table id="list" width="100%">
   <tr>
     <th width="20%">League</th>
@@ -71,8 +73,6 @@ You aren't a member of any league yet.  <%= link_to 'Join one now!', new_league_
 	<% end %>
 </table>
 
-<p>
-	<%= link_to 'Join a new league', new_league_membership_path %>
 <p><p>
 The <%= image_tag("star16x16.gif", :border => 0) %> icon marks your owners.
 
