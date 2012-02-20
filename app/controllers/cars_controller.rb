@@ -5,7 +5,7 @@ class CarsController < ApplicationController
   # GET /cars
   # GET /cars.xml
   def index
-    @cars = Car.all(:order => "number")
+    @cars = Car.where(:year => Time.now.year).all(:order => "number")
     @cars.sort!{|a,b| a.number.to_i <=> b.number.to_i}
 
     respond_to do |format|

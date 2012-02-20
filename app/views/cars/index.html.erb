@@ -2,7 +2,7 @@
 
 <% if @cars.nil? || @cars.empty? %>
 
-There are no cars in the system yet.  <%= link_to 'Add one now!', new_car_path %>
+There are no cars in the system yet for <%= Time.now.year%>.  <%= link_to 'Add one now!', new_car_path %>
 
 <% else %>
 

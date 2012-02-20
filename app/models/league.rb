@@ -13,10 +13,12 @@ class League < ActiveRecord::Base
   def validate
     errors.add(:year, "The year should be after 2009.") if year < 2010
     
-    if max_owners < 2 || max_owners > 13
+    if max_owners < 2 || max_owners > 20
       errors.add(:max_owners, 
-                 "The maximum number of owners should be in the range 2 to 13.")
+                 "The maximum number of owners should be in the range 2 to 20.")
     end
+    
+    errors.add(:base, "This league can no longer be edited") if !this_year?
   end
   
   public 
@@ -25,7 +27,7 @@ class League < ActiveRecord::Base
     open_leagues = []
     
     self.find(:all).each do |league| 
-      if league.is_allowing_registration?
+      if league.is_allowing_registration? && league.this_year?
         open_leagues.push(league)
       end
     end
@@ -44,15 +46,19 @@ class League < ActiveRecord::Base
   end
   
   def email_standings
-    LeagueMailer.standings(self).deliver if num_members > 0
+    LeagueMailer.standings(self).deliver if num_members > 0 && this_year?
   end
   
   def email_race_draft_results
-    LeagueMailer.race_draft_results(self).deliver if num_members > 0
+    LeagueMailer.race_draft_results(self).deliver if num_members > 0 && this_year?
   end
   
   def email(subject, message)
-    LeagueMailer.broadcast_message(self, subject, message).deliver if num_members > 0
+    LeagueMailer.broadcast_message(self, subject, message).deliver if num_members > 0 && this_year?
+  end
+  
+  def this_year?
+    year == Time.now.year
   end
   
   def last_race_winner
@@ -101,6 +107,7 @@ class League < ActiveRecord::Base
                                      :car2_id => m.darkhorse_car_id)
     
       qualifiers.reject!{|q| q.id == m.franchise_car_id}
+      qualifiers.reject!{|q| q.id == m.darkhorse_car_id} if !double_darkhorse
     end
     
     logger.debug("After assigning fixed stables...")
@@ -128,8 +135,9 @@ class League < ActiveRecord::Base
       league_memberships.sort{|a,b| a.initial_draft_position <=> b.initial_draft_position} :
       league_memberships.sort{|a,b| a.current_mini_chase_points <=> b.current_mini_chase_points}
 
-    draft_order_by_round = [members_worst_to_best, 
-                            league_memberships.sort_by{rand}]
+    draft_order_by_round = [members_worst_to_best]
+    
+    draft_order_by_round.push(league_memberships.sort_by{rand}) if num_cars_per_stable == 4
 
     draft_lists = {}
     league_memberships.each{|m| draft_lists[m.id]=m.draft_list.ranked_cars}

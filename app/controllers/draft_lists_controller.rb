@@ -44,7 +44,7 @@ class DraftListsController < ApplicationController
         rankedCars = 
           PreseasonRanking.find_all_by_year(
                             @draft_list.year, 
-                            :order => "position").collect{|pr| pr.car}
+                            :order => "position DESC").collect{|pr| pr.car}
         
         rankedCars.each do |car|
           @draft_list.add_car(car)

@@ -30,6 +30,14 @@
     <%= f.date_select(:first_chase_race_date, :default => Time.now) %>
   </p>
   <p>
+    Num Cars Per Stable<br />
+    <%= f.select :num_cars_per_stable, [[3,3],[4,4]] %>
+  </p>
+  <p>
+    Double Darkhorse Allowed?<br />
+    <%= f.check_box :double_darkhorse %>
+  </p>
+  <p>
     <%= f.label "Registration is open:" %><br />
     <%= f.check_box :is_registration_open %>
   </p>

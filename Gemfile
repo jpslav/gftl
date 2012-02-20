@@ -25,9 +25,12 @@ gem 'tlsmail'
 
 gem 'yaml_db'
 
+gem 'meta_where'
+
 group :development, :test do
 	gem 'sqlite3-ruby', :require => 'sqlite3'
 	gem 'ruby-debug'
+	gem 'bullet'
 end
 
 group :production do

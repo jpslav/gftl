@@ -29,7 +29,7 @@ class RaceStable < ActiveRecord::Base
    
    public
    def orderedCars
-     [car1, car2, car3, car4]
+     [car1, car2, car3, car4].compact
    end
    
    def orderedCarIds

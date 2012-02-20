@@ -5,7 +5,7 @@ class RacesController < ApplicationController
   # GET /races
   # GET /races.xml
   def index
-    @races = Race.all(:order => "racetime")
+    @races = Race.where(:racetime.gt => Time.local(Time.now.year)).all(:order => "racetime")
 
     respond_to do |format|
       format.html # index.html.erb
