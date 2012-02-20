@@ -12,16 +12,17 @@ class LeagueStats
   attr_reader :num_races
   attr_reader :personal_worsts
   attr_reader :personal_bests
+  attr_reader :members
 
   def initialize(league)
-    members = league.league_memberships
-    member_ids = members.collect{|m| m.id}
+    @members = league.league_memberships
+    member_ids = @members.collect{|m| m.id}
     
     # Put in logic for before first race of each chase, etc
     
-    @mini_chase_points = members.make_hash{|m| [m.id, m.current_mini_chase_points]}
-    @ranked_members = members.sort{|a,b| b.current_mini_chase_points <=> a.current_mini_chase_points}
-    @last_week_points = members.make_hash{|m| [m.id, m.last_stable.nil? ? 0 : m.last_stable.points]}
+    @mini_chase_points = @members.make_hash{|m| [m.id, m.current_mini_chase_points]}
+    @ranked_members = @members.sort{|a,b| b.current_mini_chase_points <=> a.current_mini_chase_points}
+    @last_week_points = @members.make_hash{|m| [m.id, m.last_stable.nil? ? 0 : m.last_stable.points]}
     
     previous_mini_chase_points = {}
     @mini_chase_points.each_pair{|id, points| previous_mini_chase_points[id] = points-@last_week_points[id]}
@@ -45,7 +46,7 @@ class LeagueStats
     
     @personal_bests = {}
     @personal_worsts = {}
-    members.each do |member|
+    @members.each do |member|
       @personal_bests[member.id] = member.personal_best_week_points
       @personal_worsts[member.id] = member.personal_worst_week_points
     end

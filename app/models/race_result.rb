@@ -11,6 +11,7 @@ class RaceResult < ActiveRecord::Base
   
   def self.anyForYear(year)
     firstRaceOfYear = Race.firstRaceOfYear(year)
+    return [] if firstRaceOfYear.nil?
     results = RaceResult.find_all_by_race_id(firstRaceOfYear.id)  
     results != nil && !results.empty?
   end

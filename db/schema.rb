@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110219181017) do
+ActiveRecord::Schema.define(:version => 20120219225844) do
 
   create_table "cars", :force => true do |t|
     t.string   "number"
@@ -54,10 +54,12 @@ ActiveRecord::Schema.define(:version => 20110219181017) do
     t.string   "name"
     t.integer  "year"
     t.integer  "max_owners"
-    t.boolean  "is_registration_open", :default => true
+    t.boolean  "is_registration_open",  :default => true
     t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "allstar_race_date"
+    t.datetime "first_chase_race_date"
   end
 
   create_table "owners", :force => true do |t|

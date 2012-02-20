@@ -17,12 +17,25 @@ class LeagueMembership < ActiveRecord::Base
   
   # TODO clean up how we do times!!
   
-  @@day_before_allstar_race = Time.local(Time.now.year,5,20)
-  @@day_before_start_of_chase = Time.local(Time.now.year,9,17)
+  # @@day_before_allstar_race = Time.local(Time.now.year,5,20)
+  # @@day_before_start_of_chase = Time.local(Time.now.year,9,17)
+  # 
+  # @@first_half_bounds = [Time.local(Time.now.year,1,1), @@day_before_allstar_race]
+  # @@second_half_bounds = [@@day_before_allstar_race, @@day_before_start_of_chase]
+  # @@chase_bounds = [@@day_before_start_of_chase, Time.local(Time.now.year,12,31)]
   
-  @@first_half_bounds = [Time.local(Time.now.year,1,1), @@day_before_allstar_race]
-  @@second_half_bounds = [@@day_before_allstar_race, @@day_before_start_of_chase]
-  @@chase_bounds = [@@day_before_start_of_chase, Time.local(Time.now.year,12,31)]
+  
+  def first_half_bounds
+    [Time.local(league.year,1,1), -1.days.since(league.allstar_race_date)]
+  end
+  
+  def second_half_bounds
+    [-1.days.since(league.allstar_race_date), -1.days.since(league.first_chase_race_date)]
+  end
+  
+  def chase_bounds
+    [-1.days.since(league.first_chase_race_date), Time.local(league.year,12,31)]
+  end
   
   def toString
     return owner.name + "/" + league.name
@@ -31,10 +44,10 @@ class LeagueMembership < ActiveRecord::Base
   def current_mini_chase_points
     now = Time.now
     
-    first_half_end = Race.raceJustAfter(@@first_half_bounds[1]).racetime
-    second_half_end = Race.raceJustAfter(@@second_half_bounds[1]).racetime
+    first_half_end = Race.raceJustAfter(first_half_bounds[1]).racetime
+    second_half_end = Race.raceJustAfter(second_half_bounds[1]).racetime
     
-    if now >= @@first_half_bounds[0] && now < first_half_end
+    if now >= first_half_bounds[0] && now < first_half_end
       return firstHalfPoints
     elsif now >= first_half_end && now < second_half_end
       return secondHalfPoints
@@ -44,15 +57,15 @@ class LeagueMembership < ActiveRecord::Base
   end
   
   def firstHalfPoints
-    mini_chase_points(@@first_half_bounds[0], @@first_half_bounds[1])
+    mini_chase_points(first_half_bounds[0], first_half_bounds[1])
   end
   
   def secondHalfPoints
-    mini_chase_points(@@second_half_bounds[0], @@second_half_bounds[1])
+    mini_chase_points(second_half_bounds[0], second_half_bounds[1])
   end
   
   def chasePoints
-    mini_chase_points(@@chase_bounds[0], @@chase_bounds[1])
+    mini_chase_points(chase_bounds[0], chase_bounds[1])
   end
   
   def mini_chase_points(start_datetime, end_datetime)

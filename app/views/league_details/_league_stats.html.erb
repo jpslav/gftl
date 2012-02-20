@@ -1,0 +1,32 @@
+<table id="list" width="100%">
+  <tr>
+    <th width="" colspan=2>Standings</th>
+    <th width="">Owner</th>
+	 <th width="">Points<br/>(Chase)</th>
+	 <th width="">Points<br/>(Week)</th>
+	 <th width="">Avg/Week</th>
+	 <th width="">Avg/Driver</th>
+	 <th width="">Best Single<br/>Race Points</th>
+	 <th width="">Worst Single<br/>Race Points</th>
+	 <th width="">Start &amp; Park<br/>Awards</th>
+  </tr>
+  <% standing = 0 %>
+  <% stats.members.each do |member| %>
+     <tr class="<%= cycle("evenrow", "oddrow") %>">
+       <td><%= stats.standings[member.id] %>.</td>
+       <% change = stats.standings_change[member.id] %>
+       <% change_str = "%+d" % change %>
+       <td><%= change != 0 ? "(#{change_str})" : ""%></td>
+       <td><%= member.owner.user.first_name %></td>
+       <td><%= stats.mini_chase_points[member.id] %></td>
+   	 <td><%= stats.last_week_points[member.id] %></td>
+   	 <td><%= stats.mini_chase_points[member.id]/stats.num_races %></td>
+   	 <td><%=stats.mini_chase_points[member.id]/stats.num_races/4 %></td>
+   	 <td <% if stats.id_with_highest_personal_best == member.id %>class="highlight_cell"<%end%>>
+   	    <%= stats.personal_bests[member.id] %></td>
+       <td <% if stats.id_with_lowest_personal_best == member.id %>class="highlight_cell"<%end%>>
+          <%= stats.personal_worsts[member.id] %></td>
+    	 <td><%= stats.park_and_stop_awards[member.id] %></td>
+     </tr>
+  <% end %>
+</table>

@@ -32,10 +32,10 @@ You aren't a member of any league yet.  <%= link_to 'Join one now!', new_league_
 		<td><%= link_to membership.owner.name, owner_path(membership.owner) %></td>
 		<td><%= getFranchiseCarString(@current_membership) %></td>
 		<td>
-		   <% if my_owner %>
+		   <% if my_owner && league.year == Time.now.year %>
 		      <%= form_tag({:action => "select_darkhorse"}) do %>
    			<%= select_tag 'chosen_darkhorse', 
-   			   getDarkhorseSelectOptions(Time.now.year, @current_membership)
+   			   getDarkhorseSelectOptions(league.year, @current_membership)
    			-%>
    			<%= hidden_field_tag 'membership_id', @current_membership.id %>
    			<%= submit_tag 'Save' -%>
@@ -45,7 +45,7 @@ You aren't a member of any league yet.  <%= link_to 'Join one now!', new_league_
 		   <% end %>
 		</td>
 		<td>
-		   <% if my_owner && !membership.draft_list.nil? %>
+		   <% if my_owner && !membership.draft_list.nil? &&  league.year == Time.now.year  %>
 			   <%= form_tag({:action => "select_draft_list"}) do %>
    			   <%= select_tag 'chosen_draft_list', 
       			  options_from_collection_for_select(

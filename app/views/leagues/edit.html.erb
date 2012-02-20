@@ -22,6 +22,14 @@
     <%= f.text_field :password %>
   </p>
   <p>
+    <%= f.label :allstar_race_date %><br />
+    <%= f.date_select(:allstar_race_date, :default => Time.now) %>
+  </p>
+  <p>
+    <%= f.label :first_chase_race_date %><br />
+    <%= f.date_select(:first_chase_race_date, :default => Time.now) %>
+  </p>
+  <p>
     <%= f.label "Registration is open:" %><br />
     <%= f.check_box :is_registration_open %>
   </p>
