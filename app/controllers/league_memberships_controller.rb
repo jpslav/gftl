@@ -16,7 +16,7 @@ class LeagueMembershipsController < ApplicationController
      
     @current_user_leagues = League.find(current_user_league_ids).to_a
     
-    @available_draft_lists = current_user.draft_lists
+    @available_draft_lists = current_user.draft_lists.where(:year => Time.now.year)
     
     # Delete this soon
        @league_memberships = 

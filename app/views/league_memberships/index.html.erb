@@ -1,5 +1,9 @@
 <div id="pageHeading">League Memberships</div>
 
+<style type="text/css">
+  .old_league {display: none;}
+</style>
+
 <% if @current_user_leagues.nil? || @current_user_leagues.empty? %>
 
 You aren't a member of any league yet.  <%= link_to 'Join one now!', new_league_membership_path %>
@@ -20,10 +24,12 @@ You aren't a member of any league yet.  <%= link_to 'Join one now!', new_league_
   </tr>
 <% rowtype = "evenrow"%>
 	<% @current_user_leagues.each do |league| %>
+
 	<tr class="<%= rowtype %>">
-		<td colspan="1"><%=h league.name %></td>
-		<td colspan="5">
+		<td colspan="1"><%=h league.name %><%= ' <b>(old)</b>'.html_safe if league.year < Time.now.year %></td>
+		<td colspan="5"></td>
 	</tr>
+		<tbody class="<%= league.year < Time.now.year ? 'old_league' : ''%>">
 	<% rowtype = "oddrow" == rowtype ? "evenrow" : "oddrow" %>
 	<% league.league_memberships.each do |membership| %>
 	<% @current_membership = membership %>
@@ -69,12 +75,22 @@ You aren't a member of any league yet.  <%= link_to 'Join one now!', new_league_
 	</tr>
 	<% rowtype = "oddrow" == rowtype ? "evenrow" : "oddrow" %>
 	<% end %>
-		
+	</tbody>
 	<% end %>
 </table>
 
-<p><p>
+<p>
+<%= link_to_function 'Show leagues from previous years', '$(".old_league").show(); $(this).hide();' %>  
+<p>
 The <%= image_tag("star16x16.gif", :border => 0) %> icon marks your owners.
+
+<% content_for :javascript do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      $('.old_league').hide();
+    });
+  <% end %>
+<% end %>
 
 
 <% end %>
