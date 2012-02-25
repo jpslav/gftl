@@ -44,6 +44,8 @@ class LeagueStats
     @standings_change = {}
     @standings.each_pair{|id, standing| @standings_change[id] = -standing + @previous_standings[id]}
     
+    return if !Race.firstRaceOfYear(league.year).race_results.any?
+    
     @personal_bests = {}
     @personal_worsts = {}
     @members.each do |member|
