@@ -53,6 +53,11 @@ Gftl2::Application.routes.draw do
     post :sort, :on => :collection
   end
   
+  resources :users, :only => [:index, :show, :edit, :update] do
+    post 'become'
+  end
+  
+  
   root :to => "home#index"
   
   # The priority is based upon order of creation:

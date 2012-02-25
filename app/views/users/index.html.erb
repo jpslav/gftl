@@ -1,0 +1,30 @@
+<%# Copyright (c) 2011 Rice University.  All rights reserved. %>
+
+<div id="pageHeading">User List</div>
+
+<table id="list" width="100%">
+  <tr>
+    <th width="25%">First Name</th>
+    <th width="25%">Last Name</th>
+    <th width="25%">Email</th>
+    <th width="15%">Admin?</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.first_name %></td>
+    <td><%= user.last_name %></td>
+    <td><%= user.email %></td>
+    <td><%= tf_to_yn(user.is_administrator?) %></td>
+    <td><%= link_to show_icon, user %></td>
+    <td><%= link_to edit_icon, edit_user_path(user) %></td>
+  </tr>
+<% end %>
+</table>
+
+
+<br />
+
+

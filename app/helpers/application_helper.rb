@@ -17,4 +17,13 @@ module ApplicationHelper
     "[GFTL]"
   end
   
+  def tf_to_yn(bool)
+    bool ? "Yes" : "No"
+  end
+  
+  def please_wait_js
+    '$(this).blur().hide().parent().append("Please wait");'
+  end
+  
+  
 end
