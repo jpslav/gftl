@@ -26,7 +26,11 @@
 
 <div id="sectionHeading_no_under">Stats</div>
 
+<% if Race.firstRaceOfYear(league.year).race_results.any? %>
 <%= render :partial => 'league_stats', :locals => { :stats => stats } %>
+<% else %>
+  <p>Stats aren't available until after the first points of the year have been entered.</p>
+<% end %>
 
 <div id="sectionHeading_no_under">Owned Stables</div>
 
