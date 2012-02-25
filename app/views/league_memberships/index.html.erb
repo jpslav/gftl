@@ -4,6 +4,8 @@
   .old_league {display: none;}
 </style>
 
+<%= render "shared/error_messages", :target => @membership %> 
+
 <% if @current_user_leagues.nil? || @current_user_leagues.empty? %>
 
 You aren't a member of any league yet.  <%= link_to 'Join one now!', new_league_membership_path %>

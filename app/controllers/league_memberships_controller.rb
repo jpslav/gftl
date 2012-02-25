@@ -126,8 +126,6 @@ class LeagueMembershipsController < ApplicationController
   end
   
   def select_draft_list
-    logger.info(params.inspect)
-    
     membership = LeagueMembership.find_by_id(params[:membership_id])
     membership.active_draft_list_id = params[:chosen_draft_list]
     membership.save!
@@ -136,11 +134,11 @@ class LeagueMembershipsController < ApplicationController
   end
   
   def select_darkhorse
-    logger.info(params.inspect)
+    @membership = LeagueMembership.find_by_id(params[:membership_id])
+    @membership.darkhorse_car_id = params[:chosen_darkhorse]
+    @membership.save
     
-    membership = LeagueMembership.find_by_id(params[:membership_id])
-    membership.darkhorse_car_id = params[:chosen_darkhorse]
-    membership.save!
+    flash[:error] = "The rules don't allow you to change your darkhorse right now." if @membership.errors
     
     redirect_to(league_memberships_url)    
   end

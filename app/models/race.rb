@@ -7,8 +7,7 @@ class Race < ActiveRecord::Base
 
 
   def self.racesUpToToday
-    logger.info Time.now.end_of_day
-    races = Race.find(:all, :conditions => ["racetime < ?", Time.now.end_of_day ]).to_a
+    races = Race.find(:all, :conditions => ["racetime < ? and racetime > ?", Time.now.end_of_day, Time.now.beginning_of_year ]).to_a
   end
   
   def self.racesUpThroughNextOne

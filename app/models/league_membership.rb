@@ -15,6 +15,8 @@ class LeagueMembership < ActiveRecord::Base
   belongs_to :franchise_car, :class_name => "Car", :foreign_key => "franchise_car_id"
   belongs_to :darkhorse_car, :class_name => "Car", :foreign_key => "darkhorse_car_id"
   
+  validate :darkhorse_unchanged_in_first_5, :on => :update
+  
   # TODO clean up how we do times!!
   
   # @@day_before_allstar_race = Time.local(Time.now.year,5,20)
@@ -92,6 +94,12 @@ class LeagueMembership < ActiveRecord::Base
     points = race_stables.collect{|s| s.points}
     points.reject! {|p| p == 0 }
     points.min
+  end
+  
+  def darkhorse_unchanged_in_first_5
+    errors.add(:base, "Darkhorse cars can't be changed until after the first 5 races of the season") \
+      if Race.racesUpToToday.count < 5
+    errors.none?
   end
 
 end
