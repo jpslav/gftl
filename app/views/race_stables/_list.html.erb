@@ -1,6 +1,6 @@
 <% if !stables.nil? && !stables.empty? %>
 
-<% groups = stables.group_by {|s| s.race}.sort_by{|g| g.first.racetime}.reverse!%>
+<% groups = stables.group_by {|s| s.race}.sort_by{|g| g.first.racetime}%>
 
 <table id="list">
   <tr>

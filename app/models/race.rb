@@ -14,7 +14,7 @@ class Race < ActiveRecord::Base
     races = racesUpToToday
     
     if races.empty?
-      firstRace = Race.first(:order => "racetime")
+      firstRace = Race.first(:conditions => ["racetime > ?", Time.now.beginning_of_year],:order => "racetime")
       
       return firstRace.nil? ? [] : [firstRace]
     end
