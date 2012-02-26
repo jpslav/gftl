@@ -1,8 +1,6 @@
-<% if !@race_stables.nil? && !@race_stables.empty? %>
+<% if !stables.nil? && !stables.empty? %>
 
-<% groups = @race_stables.group_by {|s| s.race}.sort_by{|g| g.first.racetime}.reverse!%>
-
-<% multi_owner = @race_stables.collect{|s| s.league_membership.owner}.uniq.size > 1%>
+<% groups = stables.group_by {|s| s.race}.sort_by{|g| g.first.racetime}.reverse!%>
 
 <table id="list">
   <tr>

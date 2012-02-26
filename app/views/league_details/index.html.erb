@@ -58,13 +58,15 @@
 <% races = Race.racesUpThroughNextOne %>
 <% @race_stables = RaceStable.all %>
 
+<% @race_stables = league.league_memberships.collect{|lm| lm.race_stables}.flatten %>
+
 <% if !@show_data_for_all_members %>
 
-<%= render(:partial => 'race_stables/list',:object => @active_membership.race_stables.to_a)%>
+<%= render(:partial => 'race_stables/list',:locals => {:stables => @race_stables})%>
 
 <% else %>
 
-<%= render(:partial => 'race_stables/list', :object => @active_membership.league.race_stables)%>
+<%= render(:partial => 'race_stables/list', :locals => {:stables => @race_stables})%>
 
 <% end %>
 

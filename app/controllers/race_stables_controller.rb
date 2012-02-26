@@ -87,7 +87,7 @@ class RaceStablesController < ApplicationController
   end
   
   def run_weekly_draft
-    League.all.each do |l|
+    League.all.select{|l| l.this_year?}.each do |l|
       stables = l.run_weekly_draft(Race.nextRace)
       stables.values.each{|s| s.save}
     end

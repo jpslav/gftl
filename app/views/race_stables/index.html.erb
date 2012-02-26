@@ -15,9 +15,11 @@ The following list of modifiable race stables is provided for the hopefully rare
 <% stables_by_league = @race_stables.group_by{|s| s.league_membership.league}%>
 
 <% stables_by_league.each do |league,stables|%>
+  <% if league.year == Time.now.year %>
 	<div id="subSectionHeading"><%= league.name %></div>
 		<%= link_to 'Add a new race stable', new_race_stable_path %>
-	<%= render(:partial => 'race_stables/list',:object => @race_stables)%>
+	<%= render(:partial => 'race_stables/list',:locals => {:stables => stables})%>
+	<% end %>
 <% end %>
 <br />
 

@@ -1,7 +1,7 @@
 class RaceStable < ActiveRecord::Base
   
    validates_uniqueness_of :league_membership_id, :scope => :race_id
-   validates_presence_of :car1_id, :car2_id, :car3_id, :car4_id, :league_membership_id, :race_id
+   validates_presence_of :car1_id, :car2_id, :car3_id, :league_membership_id, :race_id
    # validate :cars_not_same
    # validate :cars_unique_in_league_and_race
 
