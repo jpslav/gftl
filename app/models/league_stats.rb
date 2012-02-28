@@ -19,6 +19,8 @@ class LeagueStats
     @members = league.league_memberships
     member_ids = @members.collect{|m| m.id}
     
+    @num_cars_per_stable = league.num_cars_per_stable
+    
     # Put in logic for before first race of each chase, etc
     
     @mini_chase_points = @members.make_hash{|m| [m.id, m.current_mini_chase_points]}
