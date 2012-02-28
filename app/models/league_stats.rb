@@ -13,6 +13,7 @@ class LeagueStats
   attr_reader :personal_worsts
   attr_reader :personal_bests
   attr_reader :members
+  attr_reader :num_cars_per_stable
 
   def initialize(league)
     @members = league.league_memberships

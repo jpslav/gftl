@@ -13,7 +13,7 @@
 	<th width="20%">Chase Points</th>
   </tr>
   <% rowtype = "evenrow"%>
-  <% stats.members.each do |member| %>
+  <% stats.ranked_members.each do |member| %>
   <tr class="<%= rowtype %>">
     <td><%= member.owner.name %></td>
     <td><%= member.firstHalfPoints %></td>
@@ -41,7 +41,7 @@
     <th width="30%">Dark Horse</th>
   </tr>
   <% rowtype = "evenrow"%>
-  <% stats.members.each do |member| %>
+  <% stats.ranked_members.each do |member| %>
      <tr class="<%= rowtype %>">
         <td><%= member.owner.name %></td>
         <td><%= getFranchiseCarString(member,true) %></td>

@@ -11,7 +11,7 @@
 	 <th width="">Start &amp; Park<br/>Awards</th>
   </tr>
   <% standing = 0 %>
-  <% stats.members.each do |member| %>
+  <% stats.ranked_members.each do |member| %>
      <tr class="<%= cycle("evenrow", "oddrow") %>">
        <td><%= stats.standings[member.id] %>.</td>
        <% change = stats.standings_change[member.id] %>
@@ -21,7 +21,7 @@
        <td><%= stats.mini_chase_points[member.id] %></td>
    	 <td><%= stats.last_week_points[member.id] %></td>
    	 <td><%= stats.mini_chase_points[member.id]/stats.num_races %></td>
-   	 <td><%=stats.mini_chase_points[member.id]/stats.num_races/4 %></td>
+   	 <td><%=stats.mini_chase_points[member.id]/stats.num_races/stats.num_cars_per_stable %></td>
    	 <td <% if stats.id_with_highest_personal_best == member.id %>class="highlight_cell"<%end%>>
    	    <%= stats.personal_bests[member.id] %></td>
        <td <% if stats.id_with_lowest_personal_best == member.id %>class="highlight_cell"<%end%>>
