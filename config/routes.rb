@@ -10,7 +10,9 @@ Gftl2::Application.routes.draw do
   resources :help
   resources :cars
   resources :tracks
-  resources :races
+  resources :races do
+    delete :destroy_stables, :on => :member
+  end
   resources :league_memberships
   resources :owners
   resources :leagues

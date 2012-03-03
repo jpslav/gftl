@@ -85,4 +85,10 @@ class RacesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def destroy_stables
+    @race = Race.find(params[:id])
+    @race.race_stables.each{|r| r.destroy }
+    redirect_to race_stables_url
+  end
 end

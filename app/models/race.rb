@@ -3,6 +3,7 @@
 class Race < ActiveRecord::Base
   belongs_to :track
   has_many :race_results
+  has_many :race_stables
   
 
 
@@ -26,6 +27,10 @@ class Race < ActiveRecord::Base
     end
     
     races
+  end
+  
+  def self.numRacesSoFar(year)
+    Race.where(:racetime.lt => Time.now.end_of_day, :racetime.gt => Time.local(year)).count
   end
   
   def nextRace

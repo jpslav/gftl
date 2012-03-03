@@ -88,7 +88,7 @@ class League < ActiveRecord::Base
     # race (this is the top 35 in points from after the previous race).  For 
     # the first race of the year, use the top 35 from the preseason rankings
     
-    qualifiers = firstRaceNotYetRun ?  
+    qualifiers = Race.numRacesSoFar(Time.now.year) < 5 ?  
                  PreseasonRanking.top(35,Time.now.year) :
                  Car.top_35
     
