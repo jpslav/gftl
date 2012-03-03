@@ -15,7 +15,7 @@
   <tr class="oddrow">
     <td colspan="7">
       <%=h race.name_with_date %> 
-      <% if race.racetime > Time.now %>
+      <% if race.racetime > Time.now && current_user.is_administrator %>
         <%= link_to "Delete all", destroy_stables_race_path(race), :method => :delete %>
       <% end %>
     </td>
