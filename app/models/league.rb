@@ -89,8 +89,8 @@ class League < ActiveRecord::Base
     # the first race of the year, use the top 35 from the preseason rankings
     
     qualifiers = Race.numRacesSoFar(Time.now.year) < 5 ?  
-                 PreseasonRanking.top(35,Time.now.year) :
-                 Car.top_35
+                 PreseasonRanking.top(45,Time.now.year) :
+                 Car.top(43)
                  
     qualifiers.reject!{|q| excluded_car_numbers.include?(q.number)}
     
