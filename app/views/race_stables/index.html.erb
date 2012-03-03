@@ -3,6 +3,7 @@
 <div id="pageHeading">Race Stables</div>
 <p>
 	<%= form_tag({:action => "run_weekly_draft"}) do %>
+	Excluded car numbers (numbers separated by spaces, eg "6 32 1") <%= text_field_tag :excluded_car_numbers %>
 	<%= submit_tag 'Run Weekly Draft', :confirm => "Are you sure you want to run the weekly draft?" -%>
 	<% end %>
 	<p>

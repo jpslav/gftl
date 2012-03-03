@@ -78,7 +78,7 @@ class League < ActiveRecord::Base
   #                     typically has value Race.nextRace
   # @return a hash of RaceStable, with the key being the member ID
   #
-  def run_weekly_draft(draft_race)
+  def run_weekly_draft(draft_race, excluded_car_numbers = [])
 
     logger.info("Starting weekly draft for " + draft_race.name)
     
@@ -91,6 +91,8 @@ class League < ActiveRecord::Base
     qualifiers = Race.numRacesSoFar(Time.now.year) < 5 ?  
                  PreseasonRanking.top(35,Time.now.year) :
                  Car.top_35
+                 
+    qualifiers.reject!{|q| excluded_car_numbers.include?(q.number)}
     
     logger.debug("Initial race qualifiers: " + qualifiers.collect{|q| q.number}.join(", "))
     

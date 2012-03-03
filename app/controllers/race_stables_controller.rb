@@ -88,7 +88,7 @@ class RaceStablesController < ApplicationController
   
   def run_weekly_draft
     League.all.select{|l| l.this_year?}.each do |l|
-      stables = l.run_weekly_draft(Race.nextRace)
+      stables = l.run_weekly_draft(Race.nextRace, params[:excluded_car_numbers].split(" "))
       stables.values.each{|s| s.save}
     end
     redirect_to race_stables_path
