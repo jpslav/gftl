@@ -35,7 +35,7 @@ class PreseasonRanking < ActiveRecord::Base
     top(12,year)
   end
 
-  def self.top(number = nil,year)
+  def self.top(number,year)
     ranked_cars = find_all_by_year(year)
     
     return [] if ranked_cars.nil?
