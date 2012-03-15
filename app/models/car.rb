@@ -35,9 +35,9 @@ class Car < ActiveRecord::Base
     self.top(10)
   end
   
-  def self.top(numCars)
+  def self.top(numCars = nil)
     cars = Car.find_all_by_year(Time.now.year).sort{|a,b| b.total_points <=> a.total_points}
-    cars[0..numCars-1]
+    numCars.nil? ? cars : cars[0..numCars-1]
   end
   
   def self.darkhorseCandidates(year,league=nil)
