@@ -138,7 +138,7 @@ class LeagueMembershipsController < ApplicationController
     @membership.darkhorse_car_id = params[:chosen_darkhorse]
     @membership.save
     
-    flash[:error] = "The rules don't allow you to change your darkhorse right now." if @membership.errors
+    flash[:error] = "The rules don't allow you to change your darkhorse right now." if @membership.errors.any?
     
     redirect_to(league_memberships_url)    
   end
