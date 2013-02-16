@@ -29,12 +29,13 @@ gem 'meta_where'
 
 group :development, :test do
 	gem 'sqlite3-ruby', :require => 'sqlite3'
-	gem 'ruby-debug'
+	# gem 'ruby-debug'
 	gem 'bullet'
 end
 
 group :production do
-	gem 'mysql2'
+	# gem 'mysql2'
+  gem 'pg'
 end
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
