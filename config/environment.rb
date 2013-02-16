@@ -17,10 +17,10 @@ ActionMailer::Base.smtp_settings = {
   :address            => 'smtp.gmail.com',
   :port               => 587,
   :tls                => true,
-  :domain             => 'adeptivelabs.com', 
+  :domain             => ENV['EMAIL_DOMAIN'], 
   :authentication     => :plain,
-  :user_name          => 'noreply@adeptivelabs.com',
-  :password           => 'E85666%%'
+  :user_name          => ENV['EMAIL_USER_NAME'],
+  :password           => ENV['EMAIL_PASSWORD']
 }
 
 # Initialize the rails application
