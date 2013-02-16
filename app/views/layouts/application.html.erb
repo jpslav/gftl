@@ -48,8 +48,12 @@
            oMenuBar.render();
        };
 
-       // Initialize and render the menu bar when it is available in the DOM
-       YAHOO.util.Event.onContentReady("mainCategory", onMenuBarReady);
+       $(document).ready(function() {
+           // Initialize and render the menu bar when it is available in the DOM
+           YAHOO.util.Event.onContentReady("mainCategory", onMenuBarReady);
+       });
+
+
     </script> 	
 </head>
 
