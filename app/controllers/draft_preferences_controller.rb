@@ -22,8 +22,10 @@ private
     selectedPreference = DraftPreference.find(preference_id)
       
     case action
-    when :movePreferenceUp: selectedPreference.moveEarlier
-    when :movePreferenceDown: selectedPreference.moveLater
+    when :movePreferenceUp
+     selectedPreference.moveEarlier
+    when :movePreferenceDown
+     selectedPreference.moveLater
     end
     
     # Generate the partial for the preference list (for this, we need to ordered 
