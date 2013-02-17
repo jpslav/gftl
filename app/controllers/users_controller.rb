@@ -19,11 +19,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     @user.is_administrator = params[:user][:is_administrator]
-    if params[:user][:disable].blank?
-      @user.enable!
-    else
-      @user.disable!
-    end
+    # if params[:user][:disable].blank?
+    #   @user.enable!
+    # else
+    #   @user.disable!
+    # end
     
     respond_with(@user)
   end
