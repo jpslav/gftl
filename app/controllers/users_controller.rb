@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     #   @user.disable!
     # end
     
-    respond_with(@user)
+    # respond_with(@user)
   end
   
   def become
