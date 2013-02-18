@@ -18,9 +18,9 @@ class LeagueMembershipsController < ApplicationController
     
     @available_draft_lists = current_user.draft_lists.where(:year => Time.now.year)
     
-    # Delete this soon
-       @league_memberships = 
-          LeagueMembership.find_by_owner_id(current_user.owners.collect {|o| o.id}).to_a
+    # # Delete this soon
+    #    @league_memberships = 
+    #       LeagueMembership.find_by_owner_id(current_user.owners.collect {|o| o.id}).to_a
     
     respond_to do |format|
       format.html # index.html.erb
