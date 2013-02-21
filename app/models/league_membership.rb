@@ -83,7 +83,9 @@ class LeagueMembership < ActiveRecord::Base
   end
   
   def last_stable
-    RaceStable.find_by_league_membership_id_and_race_id(id, Race.lastRace.id)
+    lastRace = Race.lastRace
+    return nil if lastRace.nil?
+    RaceStable.find_by_league_membership_id_and_race_id(id, lastRace.id)
   end
   
   def personal_best_week_points
