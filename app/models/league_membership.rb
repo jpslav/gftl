@@ -99,9 +99,11 @@ class LeagueMembership < ActiveRecord::Base
   end
   
   def darkhorse_unchanged_in_first_5
-    errors.add(:base, "Darkhorse cars can't be changed until after the first 5 races of the season") \
-      if darkhorse_car_id_changed? && Race.racesUpToToday.count < 5
-    errors.none?
+    return true if !darkhorse_car_id_changed?
+    num_races = Race.racesUpToToday.count
+    return true if num_races == 0 || num_races >= 5
+    errors.add(:base, "Darkhorse cars can't be changed until after the first 5 races of the season")
+    false
   end
 
 end
