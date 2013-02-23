@@ -22,7 +22,7 @@ You aren't a member of any league yet.  <%= link_to 'Join one now!', new_league_
     <th width="15%">Franchise</th>
     <th width="15%">Darkhorse</th>
     <th width="20%">Draft List</th>
-    <th colspan="3"></th>
+    <th colspan="4"></th>
   </tr>
 <% rowtype = "evenrow"%>
 	<% @current_user_leagues.each do |league| %>
@@ -74,6 +74,7 @@ You aren't a member of any league yet.  <%= link_to 'Join one now!', new_league_
 		<td><%= link_to trash_icon, membership, 
 				:confirm => 'Are you sure you want to remove ' + membership.owner.name + ' from ' + membership.league.name + "?", 
 				:method => :delete if current_user.is_administrator %></td>
+    <td><%= link_to edit_icon, edit_league_membership_path(membership) if current_user.is_administrator %></td>
 	</tr>
 	<% rowtype = "oddrow" == rowtype ? "evenrow" : "oddrow" %>
 	<% end %>
