@@ -4,7 +4,7 @@ class League < ActiveRecord::Base
   validates_format_of :year, :with => /^\d\d\d\d$/
   validates_length_of       :password,    :within => 1..40
   
-  has_many :league_memberships
+  has_many :league_memberships, :dependent => :destroy
   
   # http://media.railscasts.com/videos/196_nested_model_form_part_1.mov
   accepts_nested_attributes_for :league_memberships

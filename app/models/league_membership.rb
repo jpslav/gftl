@@ -10,7 +10,7 @@ class LeagueMembership < ActiveRecord::Base
   belongs_to :league
   belongs_to :owner
   belongs_to :draft_list, :class_name => "DraftList", :foreign_key => "active_draft_list_id"
-  has_many :race_stables
+  has_many :race_stables, :dependent => :destroy
 
   belongs_to :franchise_car, :class_name => "Car", :foreign_key => "franchise_car_id"
   belongs_to :darkhorse_car, :class_name => "Car", :foreign_key => "darkhorse_car_id"

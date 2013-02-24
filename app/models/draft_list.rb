@@ -5,7 +5,7 @@ class DraftList < ActiveRecord::Base
   
   belongs_to :user
   has_many :league_memberships, :foreign_key => 'active_draft_list_id'
-  has_many :draft_preferences
+  has_many :draft_preferences, :dependent => :destroy
   
   def self.add_car(car)
     return if self.has_car(car)

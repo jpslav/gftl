@@ -3,5 +3,5 @@ class Owner < ActiveRecord::Base
   validates_uniqueness_of :name
   
   belongs_to :user
-  has_many :league_memberships
+  has_many :league_memberships, :dependent => :destroy
 end

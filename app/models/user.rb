@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
 
-  has_many :owners
-  has_many :draft_lists
+  has_many :owners, :dependent => :destroy
+  has_many :draft_lists, :dependent => :destroy
 
   def current_league_membership
     return nil if -1 == current_league_membership_id
