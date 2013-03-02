@@ -102,7 +102,7 @@ class LeagueMembership < ActiveRecord::Base
     return true if current_user.is_administrator
     return true if !darkhorse_car_id_changed?
     num_races = Race.racesUpToToday.count
-    return true if num_races == 0 || num_races >= 5
+    return true if num_races <= 1 || num_races >= 5
     errors.add(:base, "Darkhorse cars can't be changed until after the first 5 races of the season")
     false
   end
