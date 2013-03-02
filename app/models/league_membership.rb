@@ -99,6 +99,7 @@ class LeagueMembership < ActiveRecord::Base
   end
   
   def darkhorse_unchanged_in_first_5
+    return true if current_user.is_administrator
     return true if !darkhorse_car_id_changed?
     num_races = Race.racesUpToToday.count
     return true if num_races == 0 || num_races >= 5
